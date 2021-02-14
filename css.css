@@ -1,0 +1,486 @@
+@font-face {
+    font-family: 'Arvo', serif;
+    src: url(https://fonts.googleapis.com/css2?family=Arvo&display=swap);
+}
+body {
+    font-family: 'Lato', sans-serif;
+    transition-duration: 0.4s;
+}
+h1 {
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    transition-duration: 0.6s;
+}
+h2 {
+    text-align: center;
+    font-family: 'Arvo', serif;
+}
+h3 {
+    font-family: 'Arvo', serif;
+}
+button {
+    transition-duration: 0.4s;
+    cursor: pointer;
+    color: white;
+    background-color: rgb(0, 0, 0);
+    border: 0px solid black;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 5px;
+}
+button:hover {
+    border-radius: 10px;
+}
+button:active {
+    border-radius: 20px;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.tablink {
+    background-color: rgb(53, 53, 53);
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0px 0px;
+    font-size: 0px;
+    width: 33.333%;
+    border-radius: 0px;
+    display: none;
+}
+.dropbtn {
+    background-color: black;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}  
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+}  
+.dropdown {
+    position: relative;
+    display: block;
+}  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}  
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}  
+.dropdown a:hover {background-color: #ddd;}
+.show {display: block;}
+.alertbar {
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+    background-color: black;
+}
+.alertbar p {
+    position: absolute;
+    color: white;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    text-align: center;
+    transform:translateX(100%);
+    animation: textscroll 15s linear infinite;
+}
+.upgradebutton {
+    background-color: rgb(255, 0, 0);
+    color: black;
+    display: none;
+}
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    border-radius: 0px;
+    transition-duration: 0.4s;
+}
+.arrow:hover {
+    border-radius: 3px;
+}
+@media only screen and (min-width: 950px) {
+    .tablink {
+        visibility: visible;
+        background-color: rgb(0, 0, 0);
+        color: white;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        font-size: 17px;
+        width: 33.333%;
+        border-radius: 0px;
+        display: block;
+    }
+    .dropdown {
+        display: none;
+        padding: 0px 0px;
+        width: 0%;
+        height: 0%;
+    }
+}
+.explaintext {
+    display: none;
+}
+.tablink:hover {
+    background-color: rgb(39, 39, 39);
+    border-radius: 0px;
+}
+.tabcontent {
+    padding: 40px 20px;
+    height: 100%;
+}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: grey;
+    color: #fff;
+    text-align: center;
+    padding: 5px 5px;
+    border-radius: 2px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: 0.3s;
+}
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: grey transparent transparent transparent;
+    transition: 0.3s;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    border-radius: 15px;
+    padding: 10px 10px;
+}
+.tooltip:hover .tooltiptext::after {
+    margin-left: 0px;
+    top: 100%
+}
+.cookiesmessage {
+    position: fixed;
+    bottom: 35px;
+    right: 20px;
+    margin-left: 20px;
+    max-width: 300px;
+}
+.cookiesmessage-header {
+    padding: 25px 15px;
+    background: grey;
+    font-size: 30px;
+    color: white;
+}
+.cookiesmessage-container {
+    padding: 15px;
+    background-color: #ccc;
+    color: black;
+}
+.closecookiesmessage {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+.awardcard {
+    outline: 2px solid grey;
+    border-radius: 5px;
+    width: 100%;
+}
+.awardBar {
+    width: 1%;
+    height: 30px;
+    background-color: green;
+    border-radius: 5px;
+}
+.awardBarProgress {
+    width: 100%;
+    background-color: grey;
+}
+.paddedtext {
+    padding: 3px 3px;
+}
+.explabel {
+    background-color: rgb(255, 217, 0);
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 14px;
+}
+.loader {
+    border: 20px solid black;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    animation: spin 1s infinite;
+    transition-duration: 0.5s;
+    border-top: 20px solid red;
+    border-right: 20px solid yellow;
+    border-bottom: 20px solid greenyellow;
+    border-left: 20px solid cyan;
+    margin: 0 auto;
+    margin-top: 50px;
+    background: radial-gradient(black 0%, rgb(60, 60, 60) 100%);
+}
+#thealertbar {
+    display: none;
+}
+#score {
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Arvo', serif;
+}
+#bpscounter {
+    text-align: center;
+}
+#singlebytebutton {
+    background-color: rgb(0, 255, 64);
+    color: black;
+    padding: 20px 35px;
+    text-align: center;
+    font-size: 30px;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+    margin: auto;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    transition-timing-function: ease;
+}
+#singlebytebutton:active {
+    background-color: rgb(0, 255, 166);
+}
+#darkmodebutton {
+    transition-duration: 1.0s;
+    cursor: pointer;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 5px;
+}
+#singlebytebutton:hover {
+    background-color: rgb(87, 255, 224);
+    color: black;
+    border-radius: 50px;
+}
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+    transition-duration: 0.5s;
+}
+#snackbar.show {
+    visibility: visible;
+    opacity: 1;
+    border-radius: 15px;
+}
+#snackbar.hide {
+    visibility: hidden;
+    opacity: 0;
+    border-radius: 2px;
+    min-width: 250px;
+}
+#cookiespopup {
+    visibility: hidden;
+}
+#welcometext {
+    animation-name: rainbow;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    text-shadow: 2px 2px 5px black;
+}
+#autnav {
+    border-radius: 15px 0px 0px 15px;
+}
+#autnav:hover {
+    border-radius: 25px 0px 0px 25px;
+}
+#setnav {
+    border-radius: 0px 15px 15px 0px;
+}
+#setnav:hover {
+    border-radius: 0px 25px 25px 0px;
+}
+#topbar {
+    background-color: black;
+    position: fixed;
+    top: -50px;
+    width: 100%;
+    display: block;
+    transition: top 0.3s;
+    border-radius: 0px 0px 15px 15px;
+}
+#topbar a {
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: 'Arvo', serif;
+}
+#ontoptypebutton {
+    cursor: pointer;
+    background-color: rgb(0, 255, 64);
+    color: black;
+}
+#savedatabuttons {
+    display: none;
+}
+#experimentsconfirm {
+    display: none;
+}
+#missingcss {
+    display: none;
+}
+@keyframes textscroll {
+    0%   { 
+        -moz-transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%); 
+    }
+    100% { 
+        -moz-transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%); 
+    }
+}
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+@keyframes rainbow {
+    0% {color: rgb(255, 0, 0);}
+    20% {color: rgb(255, 255, 0);}
+    40% {color: rgb(173, 255, 50);}
+    60% {color: rgb(0, 0, 255);}
+    80% {color: rgb(128, 0, 255);}
+    100% {color: rgb(255, 0, 0);}
+}
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+@keyframes snackfadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+@keyframes snackfadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+/* Mobile mode */
+.mobile-mode .explaintext{
+    display: inline-block;
+}
+/* Dark mode */
+.dark-mode {
+    background-color: black;
+    color: white;
+}
+.dark-mode button {
+    background-color: white;
+    color: black;
+}
+.dark-mode .scorehead {
+    color: white;
+    background-color: black;
+}
+.dark-mode .dropbtn {
+    background-color: white;
+    color: black;
+}
+.dark-mode #topbar {
+    background-color: white;
+}
+.dark-mode #topbar a {
+    color: black;
+}
+.dark-mode .tablink {
+    background-color: white;
+    color: black;
+}
+.dark-mode .tablink:hover {
+    background-color: rgb(218, 218, 218);
+}
+.dark-mode .arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+.dark-mode .explabel {
+    background-color: #ffed89;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 14px;
+    color: black
+}
