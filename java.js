@@ -38,6 +38,7 @@ console.log(ismobile);
 // To make the game run faster, allows quicker access to some commonly used elements
 const scorel = document.getElementById("score");
 const bpscount = document.getElementById("bpscounter");
+const bpcount = document.getElementById("bpcounter");
 // When using the sleep command in a function you must use async or else it won't work!
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
@@ -170,6 +171,8 @@ function roundDisp(currentDisp, priorityMode, addZeroes) {
 		document.getElementById("ontopsize").innerHTML = newerdisp;
 	} else if (priorityMode === "title") {
 		document.querySelector("title").textContent = `${newerdisp} - idle file`;
+	} else {
+		return newerdisp;
 	}
 }
 // Adds zeroes to the end of rounded displays (if requested) to prevent motion
@@ -205,10 +208,16 @@ function refreshBPS() {
 		roundSizeDisp(sps, 's', 1);
 		const shownsps = addCommasToNumber(sps);
 		bpscount.title = `${shownsps} bytes per second`;
+		const shownbpc = addCommasToNumber(spc);
+		const roundedbpc = roundSizeDisp(spc, 'return', 1);
+		bpcount.innerHTML = `${roundedbpc} per click`;
+		bpcount.title = `${shownbpc} bytes per click`;
 	} else {
 		const shownsps = addCommasToNumber(sps);
 		bpscount.innerHTML = `${shownsps} bytes per second`;
 		bpscount.title = `${shownsps} bytes per second`;
+		const shownbpc = roundSizeDisp(spc);
+		bpcount.title = `${shownbpc} bytes per click`;
 	}
 	checkBuildLevel();
 }
@@ -490,7 +499,7 @@ let boughtmacrobuts = 0;
 function buyMacroButton() {
 	if (size >= macrobuttoncost) {
 		macrobuttoncost = clickUpgrade(500, macrobuttoncost);
-		boughtmacros++;yo
+		boughtmacros++;
 		updateAllDisplays();
 		refreshAll();
 	}
@@ -691,6 +700,17 @@ function toggleVariable(varToToggle, elementToColor, color1, color2, textcolor1,
 		return 0;
 	}
 }
+// Toggles showing the bytes per click display
+// TODO: make this work, why does it not work
+let showbpc = 0;
+function toggleBytesPerClick() {
+	showbpc = toggleVariable(showbpc, "showbpcbut", "greenyellow", "red", "black", "black", "Disable Bytes Per Click Counter", "Enable Bytes Per Click Counter");
+	if (showbpc = 1) {
+		bpcount.style.display = "block";
+	} else {
+		bpcount.style.display = "none";
+	}
+}
 // Opens a page from the navigation
 function openPage(pageName) {
 	var i, tabcontent;
@@ -811,8 +831,8 @@ function enableExpFeats() {
 	if (expenabled === 0) {
 		displaySnackbar(5000, "Experimental features enabled!");
 		document.getElementById("savedatabuttons").style.display = "block";
-		document.getElementById("mutepagebutton").style.display = "inline";
-		document.getElementById("mutebutexplabel").style.display = "inline-block";
+		document.getElementById("showbpcbut").style.display = "inline";
+		document.getElementById("bpcounterlabel").style.display = "inline";
 		exp1.style.cursor = "not-allowed";
 		exp1.style.opacity = "0.6";
 		exp1.onclick = "sleep(1)";
