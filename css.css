@@ -2,9 +2,7 @@
     font-family: 'Arvo', serif;
     src: url(https://fonts.googleapis.com/css2?family=Arvo&display=swap);
 }
-body {
-    font-family: 'Lato', sans-serif;
-}
+body {font-family: 'Lato', sans-serif;}
 h1 {
     text-align: center;
     font-family: 'Arvo', serif;
@@ -14,9 +12,7 @@ h2 {
     text-align: center;
     font-family: 'Arvo', serif;
 }
-h3 {
-    font-family: 'Arvo', serif;
-}
+h3 {font-family: 'Arvo', serif;}
 button {
     transition-duration: 0.4s;
     cursor: pointer;
@@ -28,12 +24,8 @@ button {
     font-size: 12px;
     border-radius: 5px;
 }
-button:hover {
-    border-radius: 10px;
-}
-button:active {
-    border-radius: 20px;
-}
+button:hover {border-radius: 10px;}
+button:active {border-radius: 20px;}
 .tooltip {
     position: relative;
     display: inline-block;
@@ -49,9 +41,7 @@ button:active {
     position: absolute;
     z-index: 1;
 }
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-}
+.tooltip:hover .tooltiptext {visibility: visible;}
 .tablink {
     background-color: rgb(53, 53, 53);
     color: white;
@@ -74,9 +64,7 @@ button:active {
     cursor: pointer;
     width: 100%;
 }  
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
-}  
+.dropbtn:hover, .dropbtn:focus {background-color: #2980B9;}  
 .dropdown {
     position: relative;
     display: block;
@@ -127,9 +115,7 @@ button:active {
     border-radius: 0px;
     transition-duration: 0.4s;
 }
-.arrow:hover {
-    border-radius: 3px;
-}
+.arrow:hover {border-radius: 3px;}
 @media only screen and (min-width: 950px) {
     .tablink {
         visibility: visible;
@@ -152,9 +138,7 @@ button:active {
         height: 0%;
     }
 }
-.explaintext {
-    display: none;
-}
+.explaintext {display: none;}
 .tablink:hover {
     background-color: rgb(39, 39, 39);
     border-radius: 0px;
@@ -241,9 +225,7 @@ button:active {
     width: 100%;
     background-color: grey;
 }
-.paddedtext {
-    padding: 3px 3px;
-}
+.paddedtext {padding: 3px 3px;}
 .explabel {
     background-color: rgb(255, 217, 0);
     padding: 5px;
@@ -266,17 +248,13 @@ button:active {
     margin-top: 50px;
     background: radial-gradient(black 0%, rgb(60, 60, 60) 100%);
 }
-#thealertbar {
-    display: none;
-}
+#thealertbar {display: none;}
 #score {
     text-align: center;
     font-size: 25px;
     font-family: 'Arvo', serif;
 }
-#bpscounter {
-    text-align: center;
-}
+#bpscounter {text-align: center;}
 #singlebytebutton {
     background-color: rgb(0, 255, 64);
     color: black;
@@ -291,9 +269,7 @@ button:active {
     position: relative;
     transition-timing-function: ease;
 }
-#singlebytebutton:active {
-    background-color: rgb(0, 255, 166);
-}
+#singlebytebutton:active {background-color: rgb(0, 255, 166);}
 #darkmodebutton {
     transition-duration: 1.0s;
     cursor: pointer;
@@ -336,27 +312,17 @@ button:active {
     border-radius: 2px;
     min-width: 250px;
 }
-#cookiespopup {
-    visibility: hidden;
-}
+#cookiespopup {visibility: hidden;}
 #welcometext {
     animation-name: rainbow;
     animation-duration: 10s;
     animation-iteration-count: infinite;
     text-shadow: 2px 2px 5px black;
 }
-#autnav {
-    border-radius: 15px 0px 0px 15px;
-}
-#autnav:hover {
-    border-radius: 25px 0px 0px 25px;
-}
-#setnav {
-    border-radius: 0px 15px 15px 0px;
-}
-#setnav:hover {
-    border-radius: 0px 25px 25px 0px;
-}
+#autnav {border-radius: 15px 0px 0px 15px;}
+#autnav:hover {border-radius: 25px 0px 0px 25px;}
+#setnav {border-radius: 0px 15px 15px 0px;}
+#setnav:hover {border-radius: 0px 25px 25px 0px;}
 #topbar {
     background-color: black;
     position: fixed;
@@ -381,17 +347,12 @@ button:active {
     background-color: rgb(0, 255, 64);
     color: black;
 }
-#savedatabuttons {
-    display: none;
-}
-#experimentsconfirm {
-    display: none;
-}
-#missingcss {
-    display: none;
-}
+#savedatabuttons {display: none;}
+#experimentsconfirm {display: none;}
+#missingcss {display: none;}
 #bpcounter {
     display: none;
+    text-align: center;
 }
 @keyframes textscroll {
     0%   { 
@@ -439,9 +400,7 @@ button:active {
     to {bottom: 0; opacity: 0;}
 }
 /* Mobile mode */
-.mobile-mode .explaintext{
-    display: inline-block;
-}
+.mobile-mode .explaintext{display: inline-block;}
 /* Dark mode */
 .dark-mode {
     background-color: black;
@@ -459,19 +418,13 @@ button:active {
     background-color: white;
     color: black;
 }
-.dark-mode #topbar {
-    background-color: white;
-}
-.dark-mode #topbar a {
-    color: black;
-}
+.dark-mode #topbar {background-color: white;}
+.dark-mode #topbar a {color: black;}
 .dark-mode .tablink {
     background-color: white;
     color: black;
 }
-.dark-mode .tablink:hover {
-    background-color: rgb(218, 218, 218);
-}
+.dark-mode .tablink:hover {background-color: rgb(218, 218, 218);}
 .dark-mode .arrow {
     border: solid white;
     border-width: 0 3px 3px 0;
