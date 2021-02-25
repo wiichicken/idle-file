@@ -33,27 +33,35 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <!-- hi this is a game made by wiichicken please dont steal my code even though nobody will see this and my code sucks anyways -->
+    <!-- Bar shown when scrolled down -->
     <div id="topbar">
         <a id="ontopsize" style="float: left;">0 bytes</a>
         <a id="ontopsps" style="float: left; font-size: small; vertical-align: middle;">0 bytes per second</a>
         <a id="ontoptypebutton" style="color: black; -moz-user-select: none; -webkit-user-select: none; user-select: none;" onclick="oneByte()">Type</a>
+        <a id="ontopspc" style="float: right; font-size: small; vertical-align: middle; display: none; color: black;">0 bytes per click</a>
     </div>
+    <!-- Information displayed at the top of the screen -->
     <p id="score">0 bytes</p>
     <p id="bpscounter">0 bytes per second</p>
     <p id="bpcounter">0 bytes per click</p>
+    <!-- Alert bar (not currently in use) -->
     <div class="alertbar" id="thealertbar">
         <p id="alertbartext">you probably should not be seeing this message</p>
     </div>
+    <!-- type button -->
     <button id="singlebytebutton" onclick="oneByte()">Type</button>
     <hr>
+    <!-- navigation menu (mobile) -->
     <div class="dropdown">
         <button onclick="openMobileNavigation()" class="dropbtn">Navigation</button>
+        <!-- menu content -->
         <div id="mobilenavdropdown" class="dropdown-content">
             <a onclick="openPage('upspage')">Shop</a>
             <a onclick="openStatsPage()">Statistics</a>
             <a onclick="openPage('settings')">Settings</a>
         </div>
     </div>
+    <!-- navigation menu (desktop) -->
     <button class="tablink" id="autnav" onclick="openPage('upspage')">Shop</button>
     <button class="tablink" id="stanav" onclick="openStatsPage()">Statistics</button>
     <button class="tablink" id="setnav" onclick="openPage('settings')">Settings</button>
@@ -77,12 +85,15 @@
         <hr>
     </div>
 
+    <!-- loading page -->
     <div class="tabcontent" id="loaderpage">
         <h2>Loading</h2>
         <div class="loader" id="firstloader"></div>
     </div>
 
+    <!-- shop -->
     <div id="upspage" class="tabcontent">
+        <!-- shop header -->
         <h1 style="margin: 3px;">Shop</h1>
         <p style="text-align: center; margin: 3px;">Purchase upgrades and other stuff.</p>
         <hr>
@@ -123,6 +134,7 @@
         </div>
     </div>
 
+    <!-- settings -->
     <div id="settings" class="tabcontent">
         <h2>Settings</h2>
         <p style="text-align: center;">Customize your game experience</p>
@@ -161,12 +173,15 @@
         </div>
         <p class="explaintext">Toggles rounding all byte counts.</p>
         <div class="tooltip">
-            <button id="iscoremonospaced" onclick="toggleMonospaceFont()">Enable Monospaced Font</button>
+            <button id="iscoremonospaced" style="background-color: red;" onclick="toggleMonospaceFont()">Enable Monospaced Font</button>
             <span class="tooltiptext">Uses a monospaced font to reduce motion.</span>
         </div>
         <p class="explaintext">Uses a monospaced font to reduce motion.</p>
-        <button id="showbpcbut" style="background-color: red; display: none;" onclick="toggleBytesPerClick()">Enable Bytes Per Click Counter</button>
-        <span class="explabel" id="bpcounterlabel" style="display: none;">Experimental</span>
+        <div class="tooltip">
+            <button id="showbpcbut" style="background-color: red;" onclick="toggleBytesPerClick()">Enable Bytes Per Click Counter</button>
+            <span class="tooltiptext">Shows bytes per click under bytes per second</span>
+        </div>
+        <p class="explaintext">Shows bytes per click under bytes per second</p>
         <h3>Other</h3>
         <button id="defaultOpen" onclick="openPage('tutorial')" style="background-color: cyan; color: black;">View tutorial</button>
         <button id="expphase1" onclick="confirmExper()">Enable Experimental Features</button>
@@ -180,6 +195,7 @@
         </div>
     </div>
 
+    <!-- Tutorial -->
     <div id="tutorial" class="tabcontent">
         <h2 id="welcometext" style="text-rendering: optimizeSpeed;">Welcome to Idle File!</h2>
         <p id="clickonbuttontext" style="text-align: center;">Click on the large "Type" button to get bytes.</p>
@@ -190,6 +206,7 @@
         <p id="havefuntext" style="text-align: center;">Have fun playing!</p>
     </div>
 
+    <!-- Statistics -->
     <div id="statistics" class="tabcontent">
         <h2>Statistics</h2>
         <p style="text-align: center;">View your gameplay statistics</p>
@@ -208,6 +225,7 @@
         <p id="spentonautoupscount">Spent on automatic upgrades: 0 bytes</p>
         <p id="spentonclickupscount">Spent on click upgrades: 0 bytes</p>
         <hr>
+        <!-- awards -->
         <h2>Awards</h2>
         <p style="text-align: center;">View your award collection</p>
         <hr>
@@ -227,6 +245,7 @@
         </div>
     </div>
 
+    <!-- Cookies Message -->
     <div class="cookiesmessage" id="cookiespopup">
         <div class="cookiesmessage-header">COOKIES WOOO!</div>
         <span class="closecookiesmessage" onclick="closeCookiesPopup()">x</span>
@@ -234,6 +253,7 @@
             <p>this uses cookies i guess.</p>
         </div>
     </div>
+    <!-- snackbar -->
     <div id="snackbar">Message</div>
     <script src="java.js"></script>
 </body>

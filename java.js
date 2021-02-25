@@ -16,6 +16,7 @@ let files = 0;
 let folders = 0;
 let harddrives = 0;
 let ismobile = 0;
+let isloading = 1;
 
 // * Important Functions *
 
@@ -111,6 +112,8 @@ function roundSizeDisp(currentDisp, priorityMode, addZeroes) {
 		document.getElementById("ontopsize").innerHTML = newerdisp;
 	} else if (priorityMode === "title") {
 		document.querySelector("title").textContent = `${newerdisp} - idle file`;
+	} else {
+		return newerdisp;
 	}
 }
 // Rounds variables to different non byte displays (like thousands, millions)
@@ -212,12 +215,28 @@ function refreshBPS() {
 		const roundedbpc = roundSizeDisp(spc, 'return', 1);
 		bpcount.innerHTML = `${roundedbpc} per click`;
 		bpcount.title = `${shownbpc} bytes per click`;
+		document.getElementById("ontopspc").innerHTML = `${roundedbpc} per click`;
 	} else {
 		const shownsps = addCommasToNumber(sps);
-		bpscount.innerHTML = `${shownsps} bytes per second`;
-		bpscount.title = `${shownsps} bytes per second`;
-		const shownbpc = roundSizeDisp(spc);
-		bpcount.title = `${shownbpc} bytes per click`;
+		// If the bytes per second count is 1, show "byte" instead of "bytes"
+		if (shownsps === 1) {
+			bpscount.innerHTML = "1 byte per second";
+			bpscount.title = "1 byte per second";
+		} else {
+			bpscount.innerHTML = `${shownsps} bytes per second`;
+			bpscount.title = `${shownsps} bytes per second`;
+		}
+		const shownbpc = addCommasToNumber(spc);
+		// If the bytes per click count is 1, show "byte" instead of "bytes"
+		if (shownbpc === 1) {
+			bpcount.innerHTML = "1 byte per click";
+			bpcount.title = "1 byte per click";
+			document.getElementById("ontopspc").innerHTML = `1 byte per click`;
+		} else {
+			bpcount.innerHTML = `${shownbpc} bytes per click`;
+			bpcount.title = `${shownbpc} bytes per click`;
+			document.getElementById("ontopspc").innerHTML = `${shownbpc} bytes per click`;
+		}
 	}
 	checkBuildLevel();
 }
@@ -700,25 +719,40 @@ function toggleVariable(varToToggle, elementToColor, color1, color2, textcolor1,
 		return 0;
 	}
 }
-// Toggles showing the bytes per click display
-// TODO: make this work, why does it not work
+// Toggles showing the bytes per click display under the bytes per second display
 let showbpc = 0;
 function toggleBytesPerClick() {
-	showbpc = toggleVariable(showbpc, "showbpcbut", "greenyellow", "red", "black", "black", "Disable Bytes Per Click Counter", "Enable Bytes Per Click Counter");
-	if (showbpc = 1) {
+	const showbpcbutton = document.getElementById("showbpcbut");
+	if (showbpc === 0) {
+		showbpc = 1;
 		bpcount.style.display = "block";
+		if (ismobile === 0) {
+			document.getElementById("ontopspc").style.display = "block";
+		}
+		bpscount.style.marginBottom = "5px";
+		showbpcbutton.innerHTML = "Disable Bytes Per Click Counter";
+		showbpcbutton.style.backgroundColor = "greenyellow";
 	} else {
+		showbpc = 0;
 		bpcount.style.display = "none";
+		if (ismobile === 0) {
+			document.getElementById("ontopspc").style.display = "none";
+		}
+		bpscount.style.marginBottom = "10px";
+		showbpcbutton.innerHTML = "Enable Bytes Per Click Counter";
+		showbpcbutton.style.backgroundColor = "red";
 	}
 }
 // Opens a page from the navigation
 function openPage(pageName) {
-	var i, tabcontent;
-	tabcontent = document.getElementsByClassName("tabcontent");
-	for (i = 0; i < tabcontent.length; i++) {
-		tabcontent[i].style.display = "none";
+	if (isloading === 0) {
+		var i, tabcontent;
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
+		document.getElementById(pageName).style.display = "block";
 	}
-	document.getElementById(pageName).style.display = "block";
 }
 function modeToggle(modeToToggle) {
 	if (modeToToggle === 'roundmaindisp') {
@@ -831,8 +865,6 @@ function enableExpFeats() {
 	if (expenabled === 0) {
 		displaySnackbar(5000, "Experimental features enabled!");
 		document.getElementById("savedatabuttons").style.display = "block";
-		document.getElementById("showbpcbut").style.display = "inline";
-		document.getElementById("bpcounterlabel").style.display = "inline";
 		exp1.style.cursor = "not-allowed";
 		exp1.style.opacity = "0.6";
 		exp1.onclick = "sleep(1)";
@@ -926,7 +958,7 @@ function autoLoadSaveData() {
 	}
 }
 // Auto saves the game every minute if enabled
-// ! I don't think this actually works
+// ! I don't think this actually works, probably should fix that
 async function autoSaveGame() {
 	const throwaway1 = -10;
 	const throwaway2 = 10;
@@ -986,6 +1018,7 @@ function progressBar(cardElementId, number1, number2) {
 // To prevent lag, creates a fake page loading page (technically it is loading stuff)
 // TODO: Work on improving the code for the random color
 async function pageFakeLoad() {
+	isloading = 0;
 	// Gives the glow of the loading spinner a random color
 	const randomspinnerselection = randInt(1, 4);
 	const firl = document.getElementById("firstloader");
@@ -1000,9 +1033,11 @@ async function pageFakeLoad() {
 	}
 	// Opens the loading page and then waits a random amount of time
 	openPage('loaderpage');
+	isloading = 1;
 	const randomloadtime = randInt(800, 1200);
 	await sleep(randomloadtime);
 	// Works on starting the actual game
+	isloading = 0;
 	openPage('tutorial');
 	welcomeTypingEffect();
 }
@@ -1048,6 +1083,16 @@ function saveGame(showSnackbar) {
 }
 // Used to load the game from the browsers cookies
 function loadGame() {
+	// Calculates the prices of everything
+	function calculateSizes(numberBought, cost) {
+		let newsize = cost;
+		for (let count = 0; count < numberBought;) {
+			newsize = newsize * 1.15;
+			count++;
+		}
+		return newsize;
+	}
+	// Loads all of the variables
 	sizefromclicking = loadCvar("sizefromclickingsaved");
 	size = loadCvar("sizec");
 	sps = loadCvar("spsaved");
@@ -1074,8 +1119,10 @@ function loadGame() {
 	spentonautoupgrades = loadCvar("spentautosaved");
 	spentonclickupgrades = loadCvar("spentclicksaved");
 	copypastecost = loadCvar("copypastecostsaved");
+	// Updates all of the displays
 	refreshAll();
 	updateAllDisplays();
+	// Shows a snackbar confirming that the data has successfully been loaded.
 	displaySnackbar(3000, 'Game data loaded!');
 }
 

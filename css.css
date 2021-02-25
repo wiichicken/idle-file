@@ -253,8 +253,17 @@ button:active {border-radius: 20px;}
     text-align: center;
     font-size: 25px;
     font-family: 'Arvo', serif;
+    margin-bottom: 0px;
 }
-#bpscounter {text-align: center;}
+#bpscounter {
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+#bpcounter {
+    text-align: center;
+    margin-top: 5px;
+}
 #singlebytebutton {
     background-color: rgb(0, 255, 64);
     color: black;
