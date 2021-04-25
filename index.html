@@ -28,76 +28,78 @@
     <noscript>Sorry, but you cannot play this game because you either have JavaScript disabled or your browser dosen't support JavaScript.</noscript>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WWDGXLW"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <!-- hi this is a game made by wiichicken please dont steal my code even though nobody will see this and my code sucks anyways -->
-    <!-- Bar shown when scrolled down -->
-    <div id="topbar">
-        <a id="ontopsize" style="float: left;">0 bytes</a>
-        <a id="ontopsps" style="float: left; font-size: small; vertical-align: middle;">0 bytes per second</a>
-        <a id="ontoptypebutton" style="color: black; -moz-user-select: none; -webkit-user-select: none; user-select: none;" onclick="oneByte()">Type</a>
-        <a id="ontopspc" style="float: right; font-size: small; vertical-align: middle; display: none; color: black;">0 bytes per click</a>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WWDGXLW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- hi this is a game made by wiichicken please dont steal my code even though nobody will see this and my code sucks anyways -->
+<!-- Bar shown when scrolled down -->
+<div id="topbar">
+    <a id="ontopsize" style="float: left;">0 bytes</a>
+    <a id="ontopsps" style="float: left; font-size: small; vertical-align: middle;">0 bytes per second</a>
+    <a id="ontoptypebutton" style="color: black; -moz-user-select: none; -webkit-user-select: none; user-select: none;" onclick="oneByte()">Type</a>
+    <a id="ontopspc" style="float: right; font-size: small; vertical-align: middle; display: none; color: black;">0 bytes per click</a>
+</div>
+<!-- Information displayed at the top of the screen -->
+<p id="score">0 bytes</p>
+<p id="bpscounter">0 bytes per second</p>
+<p id="bpcounter">0 bytes per click</p>
+<!-- Alert bar (not currently in use) -->
+<div class="alertbar" id="thealertbar">
+    <p id="alertbartext">you probably should not be seeing this message</p>
+</div>
+<!-- type button -->
+<button id="singlebytebutton" onclick="oneByte()">Type</button>
+<hr>
+<!-- navigation menu (mobile) -->
+<div class="dropdown">
+    <button onclick="openMobileNavigation()" class="dropbtn">Navigation</button>
+    <!-- menu content -->
+    <div id="mobilenavdropdown" class="dropdown-content">
+        <a onclick="openPage('upspage')">Shop</a>
+        <a onclick="openStatsPage()">Statistics</a>
+        <a onclick="openPage('settings')">Settings</a>
     </div>
-    <!-- Information displayed at the top of the screen -->
-    <p id="score">0 bytes</p>
-    <p id="bpscounter">0 bytes per second</p>
-    <p id="bpcounter">0 bytes per click</p>
-    <!-- Alert bar (not currently in use) -->
-    <div class="alertbar" id="thealertbar">
-        <p id="alertbartext">you probably should not be seeing this message</p>
-    </div>
-    <!-- type button -->
-    <button id="singlebytebutton" onclick="oneByte()">Type</button>
+</div>
+<!-- navigation menu (desktop) -->
+<button class="tablink" id="autnav" onclick="openPage('upspage')">Shop</button>
+<button class="tablink" id="stanav" onclick="openStatsPage()">Statistics</button>
+<button class="tablink" id="setnav" onclick="openPage('settings')">Settings</button>
+
+<!-- This page should show up if there was an error loading the CSS of the page. -->
+<div id="missingcss" class="tabcontent">
     <hr>
-    <!-- navigation menu (mobile) -->
-    <div class="dropdown">
-        <button onclick="openMobileNavigation()" class="dropbtn">Navigation</button>
-        <!-- menu content -->
-        <div id="mobilenavdropdown" class="dropdown-content">
-            <a onclick="openPage('upspage')">Shop</a>
-            <a onclick="openStatsPage()">Statistics</a>
-            <a onclick="openPage('settings')">Settings</a>
-        </div>
-    </div>
-    <!-- navigation menu (desktop) -->
-    <button class="tablink" id="autnav" onclick="openPage('upspage')">Shop</button>
-    <button class="tablink" id="stanav" onclick="openStatsPage()">Statistics</button>
-    <button class="tablink" id="setnav" onclick="openPage('settings')">Settings</button>
+    <h1 style="text-align: center; background-color: rgb(255, 63, 63);">Error: Missing CSS</h1>
+    <p>The CSS of this page is missing. Please click on the button below to refresh the page to try and fix this issue.</p>
+    <button style="background-color: cyan;" onclick="window.location.reload()">Reload Page</button>
+    <p>More info: The CSS (Custom Style Sheets) of this page appear to be missing. Usually when this happens this also means that the Javascript of the page is missing. Not having the CSS for the game makes the game ugly and really hard to play. Not having the JavaScript makes the game unplayable. This specific error means that the CSS could not be found. This error usually happens when there is an error, or when you refresh the page a lot of times in a short period. Try clicking on the "Reload Page" button to fix this issue.</p>
+</div>
+<!-- This page should show if an error occurs when loading the games pages. -->
+<div id="errorpage" class="tabcontent">
+    <hr>
+    <h1 style="text-align: center; background-color: rgb(255, 63, 63);">Error</h1>
+    <p style="text-align: center;">If you are seeing this, something probably went wrong. Try clicking on the button below to attempt to fix your issue. If that does not work, try refreshing the page.</p>
+    <button style="margin: 0 auto;" onclick="openPage('tutorial')">Attempt to Fix</button>
+    <button onclick="window.location.reload()">Refresh Page</button>
+    <p>More info: This error can occur sometimes when the game is refreshed and then immediately canceled. This can also happen due to glitches in code or CSS. You can try to fix this glitch by clicking on the "Attempt to Fix" button. If clicking on the button fails to fix the issue, you can try to refresh the page.</p>
+    <hr>
+</div>
 
-    <!-- This page should show up if there was an error loading the CSS of the page. -->
-    <div id="missingcss" class="tabcontent">
-        <hr>
-        <h1 style="text-align: center; background-color: rgb(255, 63, 63);">Error: Missing CSS</h1>
-        <p>The CSS of this page is missing. Please click on the button below to refresh the page to try and fix this issue.</p>
-        <button style="background-color: cyan;" onclick="window.location.reload()">Reload Page</button>
-        <p>More info: The CSS (Custom Style Sheets) of this page appear to be missing. Usually when this happens this also means that the Javascript of the page is missing. Not having the CSS for the game makes the game ugly and really hard to play. Not having the JavaScript makes the game unplayable. This specific error means that the CSS could not be found. This error usually happens when there is an error, or when you refresh the page a lot of times in a short period. Try clicking on the "Reload Page" button to fix this issue.</p>
-    </div>
-    <!-- This page should show if an error occurs when loading the games pages. -->
-    <div id="errorpage" class="tabcontent">
-        <hr>
-        <h1 style="text-align: center; background-color: rgb(255, 63, 63);">Error</h1>
-        <p style="text-align: center;">If you are seeing this, something probably went wrong. Try clicking on the button below to attempt to fix your issue. If that does not work, try refreshing the page.</p>
-        <button style="margin: 0 auto;" onclick="openPage('tutorial')">Attempt to Fix</button>
-        <button onclick="window.location.reload()">Refresh Page</button>
-        <p>More info: This error can occur sometimes when the game is refreshed and then immediately canceled. This can also happen due to glitches in code or CSS. You can try to fix this glitch by clicking on the "Attempt to Fix" button. If clicking on the button fails to fix the issue, you can try to refresh the page.</p>
-        <hr>
-    </div>
+<!-- loading page -->
+<div class="tabcontent" id="loaderpage">
+    <h2>Loading</h2>
+    <div class="loader" id="firstloader"></div>
+</div>
 
-    <!-- loading page -->
-    <div class="tabcontent" id="loaderpage">
-        <h2>Loading</h2>
-        <div class="loader" id="firstloader"></div>
-    </div>
-
-    <!-- shop -->
-    <div id="upspage" class="tabcontent">
-        <!-- shop header -->
-        <h1 style="margin: 3px;">Shop</h1>
-        <p style="text-align: center; margin: 3px;">Purchase upgrades and other stuff.</p>
-        <hr>
-        <!-- Automatic Upgrades -->
+<!-- shop -->
+<div id="upspage" class="tabcontent">
+    <!-- shop header -->
+    <h1 style="margin: 3px;">Shop</h1>
+    <p style="text-align: center; margin: 3px;">Purchase upgrades and other stuff.</p>
+    <hr>
+    
+    <!-- Automatic Upgrades -->
+    <div>
         <h2 style="margin: 3px;">Automatic Upgrades</h2>
         <p style="text-align: center; margin: 3px;">These upgrades increase your file size automatically</p>
         <button id="keypresser" class="upgradebutton" style="display: inline;" onclick="upgradeSPS()">Keypresser (15 bytes, +1 byte per second)</button>
@@ -105,16 +107,20 @@
         <button id="holdbuy" class="upgradebutton" onclick="buyHold()">Key Holder (1 KB, +30 bytes per second)</button>
         <button id="macrobuy" class="upgradebutton" onclick="buyWordMacro()">Word Macro (50 KB, +250 bytes per second)</button>
         <button id="collabuy" class="upgradebutton" onclick="buyCollab()">Collab Document (1 MB, +5 KB per second)</button>
+    </div>
 
-        <!-- Clicking Upgrades -->
+    <!-- Clicking Upgrades -->
+    <div>
         <h2 id="clickuphead" style="margin: 3px;">Clicking Upgrades</h2>
         <p style="text-align: center; margin: 3px;" id="clickuptext">These upgrades increase your file size even more per click</p>
         <button id="fingerpurchase" class="upgradebutton" onclick="buyFinger()">Extra Finger (250 bytes, +1 byte per click)</button>
         <button id="keyboardpurchase" class="upgradebutton" onclick="buyKeyboard()">Extra Keyboard (10 KB, +40 bytes per click)</button>
         <button id="macrobutpurchase" class="upgradebutton" onclick="buyMacroButton()">Macro Button (150 KB, +500 bytes per click)</button>
         <button id="copypastepurchase" class="upgradebutton" onclick="buyCopyPaste()">Copy Paste (10 MB, +30 KB per click)</button>
+    </div>
 
-        <!-- More Upgrades -->
+    <!-- More Upgrades -->
+    <div>
         <h2 style="margin: 3px;">More Upgrades</h2>
         <p style="text-align: center; margin: 3px;">Hover over an upgrade for more information</p>
         <div class="tooltip" id="aiupgradediv">
@@ -133,128 +139,129 @@
             <p class="explaintext">Clicking gains 1% of your bytes per second</p>
         </div>
     </div>
+</div>
 
-    <!-- settings -->
-    <div id="settings" class="tabcontent">
-        <h2>Settings</h2>
-        <p style="text-align: center;">Customize your game experience</p>
-        <hr>
-        <div id="savedatabuttons">
-            <h3 style="display: inline;">Save Data</h3>
-            <span class="explabel">Experimental</span>
-            <p style="background-color: rgb(255, 153, 153); color: black; padding: 10px 10px; border-radius: 5px;">Warning: This feature has not been fully implemented. It may not work as expected, and not everything may be saved. Clearing your browser cookies will remove this data, so be careful!</p>
-            <div class="tooltip">
-                <button id="savebutton" onclick="saveGame(1)">Save (WIP)</button>
-                <span class="tooltiptext">Any previous game data will be overwritten.</span>
-            </div>
-            <p class="explaintext">Any previous game data will be overwritten.</p>
-            <div class="tooltip">
-                <button id="loadbutton" onclick="loadGame()">LOAD (WIP)</button>
-                <span class="tooltiptext">Your current save data will be overwritten.</span>
-            </div>
-            <p class="explaintext">Your current save data will be overwritten.</p>
-            <div class="tooltip">
-                <button id="toglal" style="background-color: red;" onclick="toggleAutoLoad()">Enable Auto Load</button>
-                <span class="tooltiptext">Automatically loads game data from cookies when opened.</span>
-            </div>
-            <p class="explaintext">Automatically loads game data from cookies when opened.</p>
-            <div class="tooltip">
-                <button id="togas" style="background-color: red;" onclick="toggleAutoSave()">Enable Auto Save</button>
-                <span class="tooltiptext">Automatically saves your game every minute</span>
-            </div>
-            <p class="explaintext">Automatically saves your game every minute</p>
-            <p id="lastsavedtext">Not saved yet</p>
-        </div>
-        <h3>Appearance</h3>
-        <button id="darkmodebutton" onclick="toggleDarkMode()">Enable Dark Mode</button>
+<!-- settings -->
+<div id="settings" class="tabcontent">
+    <h2>Settings</h2>
+    <p style="text-align: center;">Customize your game experience</p>
+    <hr>
+    <div id="savedatabuttons">
+        <h3 style="display: inline;">Save Data</h3>
+        <span class="explabel">Experimental</span>
+        <p style="background-color: rgb(255, 153, 153); color: black; padding: 10px 10px; border-radius: 5px;">Warning: This feature has not been fully implemented. It may not work as expected, and not everything may be saved. Clearing your browser cookies will remove this data, so be careful!</p>
         <div class="tooltip">
-            <button id="doroundisplay" onclick="modeToggle('roundmaindisp')" style="background-color: greenyellow; color: black">Disable Score Rounding</button>
-            <span class="tooltiptext">Toggles rounding all byte counts.</span>
+            <button id="savebutton" onclick="saveGame(1)">Save (WIP)</button>
+            <span class="tooltiptext">Any previous game data will be overwritten.</span>
         </div>
-        <p class="explaintext">Toggles rounding all byte counts.</p>
+        <p class="explaintext">Any previous game data will be overwritten.</p>
         <div class="tooltip">
-            <button id="iscoremonospaced" style="background-color: red;" onclick="toggleMonospaceFont()">Enable Monospaced Font</button>
-            <span class="tooltiptext">Uses a monospaced font to reduce motion.</span>
+            <button id="loadbutton" onclick="loadGame()">LOAD (WIP)</button>
+            <span class="tooltiptext">Your current save data will be overwritten.</span>
         </div>
-        <p class="explaintext">Uses a monospaced font to reduce motion.</p>
+        <p class="explaintext">Your current save data will be overwritten.</p>
         <div class="tooltip">
-            <button id="showbpcbut" style="background-color: red;" onclick="toggleBytesPerClick()">Enable Bytes Per Click Counter</button>
-            <span class="tooltiptext">Shows bytes per click under bytes per second</span>
+            <button id="toglal" style="background-color: red;" onclick="toggleAutoLoad()">Enable Auto Load</button>
+            <span class="tooltiptext">Automatically loads game data from cookies when opened.</span>
         </div>
-        <p class="explaintext">Shows bytes per click under bytes per second</p>
-        <h3>Other</h3>
-        <button id="defaultOpen" onclick="openPage('tutorial')" style="background-color: cyan; color: black;">View tutorial</button>
-        <button id="expphase1" onclick="confirmExper()">Enable Experimental Features</button>
-        <div id="experimentsconfirm">
-            <p style="background-color: rgb(255, 106, 106); color: black; padding: 10px 10px; border-radius: 8px;">Warning! These features are experimental! They may not be fully ready, and could possibly have glitches in them. If you would like to test them, click below.</p>
-            <p style="display: inline;">All experimental features are marked with an experimental tag that looks like this:</p>
-            <span class="explabel">Experimental</span>
-            <p>Would you like to enable experimental features?</p>
-            <button id="enbexpfeats" onclick="enableExpFeats()">Enable</button>
-            <button onclick="cancelExper()">Cancel</button>
+        <p class="explaintext">Automatically loads game data from cookies when opened.</p>
+        <div class="tooltip">
+            <button id="togas" style="background-color: red;" onclick="toggleAutoSave()">Enable Auto Save</button>
+            <span class="tooltiptext">Automatically saves your game every minute</span>
         </div>
+        <p class="explaintext">Automatically saves your game every minute</p>
+        <p id="lastsavedtext">Not saved yet</p>
     </div>
+    <h3>Appearance</h3>
+    <button id="darkmodebutton" onclick="toggleDarkMode()">Enable Dark Mode</button>
+    <div class="tooltip">
+        <button id="doroundisplay" onclick="modeToggle('roundmaindisp')" style="background-color: greenyellow; color: black">Disable Score Rounding</button>
+        <span class="tooltiptext">Toggles rounding all byte counts.</span>
+    </div>
+    <p class="explaintext">Toggles rounding all byte counts.</p>
+    <div class="tooltip">
+        <button id="iscoremonospaced" style="background-color: red;" onclick="toggleMonospaceFont()">Enable Monospaced Font</button>
+        <span class="tooltiptext">Uses a monospaced font to reduce motion.</span>
+    </div>
+    <p class="explaintext">Uses a monospaced font to reduce motion.</p>
+    <div class="tooltip">
+        <button id="showbpcbut" style="background-color: red;" onclick="toggleBytesPerClick()">Enable Bytes Per Click Counter</button>
+        <span class="tooltiptext">Shows bytes per click under bytes per second</span>
+    </div>
+    <p class="explaintext">Shows bytes per click under bytes per second</p>
+    <h3>Other</h3>
+    <button id="defaultOpen" onclick="openPage('tutorial')" style="background-color: cyan; color: black;">View tutorial</button>
+    <button id="expphase1" onclick="confirmExper()">Enable Experimental Features</button>
+    <div id="experimentsconfirm">
+        <p style="background-color: rgb(255, 106, 106); color: black; padding: 10px 10px; border-radius: 8px;">Warning! These features are experimental! They may not be fully ready, and could possibly have glitches in them. If you would like to test them, click below.</p>
+        <p style="display: inline;">All experimental features are marked with an experimental tag that looks like this:</p>
+        <span class="explabel">Experimental</span>
+        <p>Would you like to enable experimental features?</p>
+        <button id="enbexpfeats" onclick="enableExpFeats()">Enable</button>
+        <button onclick="cancelExper()">Cancel</button>
+    </div>
+</div>
 
-    <!-- Tutorial -->
-    <div id="tutorial" class="tabcontent">
-        <h2 id="welcometext" style="text-rendering: optimizeSpeed;">Welcome to Idle File!</h2>
-        <p id="clickonbuttontext" style="text-align: center;">Click on the large "Type" button to get bytes.</p>
-        <p id="howtospendtext" style="text-align: center;">You can spend your bytes on upgrades to help you earn bytes faster.</p>
-        <p id="viewupgradestext" style="text-align: center;">You can view different upgrade types by using the menus.</p>
-        <p id="changesettingstext" style="text-align: center;">Change your settings in the settings menu to customize your experience.</p>
-        <p id="viewtutorialagaintext" style="text-align: center;">You can view this tutorial again from the settings menu.</p>
-        <p id="havefuntext" style="text-align: center;">Have fun playing!</p>
-    </div>
+<!-- Tutorial -->
+<div id="tutorial" class="tabcontent">
+    <h2 id="welcometext" style="text-rendering: optimizeSpeed;">Welcome to Idle File!</h2>
+    <p id="clickonbuttontext" style="text-align: center;">Click on the large "Type" button to get bytes.</p>
+    <p id="howtospendtext" style="text-align: center;">You can spend your bytes on upgrades to help you earn bytes faster.</p>
+    <p id="viewupgradestext" style="text-align: center;">You can view different upgrade types by using the menus.</p>
+    <p id="changesettingstext" style="text-align: center;">Change your settings in the settings menu to customize your experience.</p>
+    <p id="viewtutorialagaintext" style="text-align: center;">You can view this tutorial again from the settings menu.</p>
+    <p id="havefuntext" style="text-align: center;">Have fun playing!</p>
+</div>
 
-    <!-- Statistics -->
-    <div id="statistics" class="tabcontent">
-        <h2>Statistics</h2>
-        <p style="text-align: center;">View your gameplay statistics</p>
-        <hr>
-        <p>All statistics are updated when this page is opened.</p>
-        <p id="timeplayedcounter">Time played: 0 seconds</p>
-        <h3>Clicking</h3>
-        <p id="clickcountstat">Total clicks: 0</p>
-        <p id="sizeperclickstat">Size per click: 0 bytes</p>
-        <p id="sizefromclicking">Size from clicking: 0 bytes</p>
-        <h3>Upgrades</h3>
-        <p id="upgradesboughtcount">Upgrades bought: 0</p>
-        <p id="autoupgradesboughtcount">Automatic upgrades bought: 0</p>
-        <p id="clickingupgradesboughtcount">Clicking upgrades bought: 0</p>
-        <p id="spentonupscount">Spent on upgrades: 0 bytes</p>
-        <p id="spentonautoupscount">Spent on automatic upgrades: 0 bytes</p>
-        <p id="spentonclickupscount">Spent on click upgrades: 0 bytes</p>
-        <hr>
-        <!-- awards -->
-        <h2>Awards</h2>
-        <p style="text-align: center;">View your award collection</p>
-        <hr>
-        <div class="awardcard">
-            <h3 class="paddedtext" id="clickerawardtitle">Clicker: Level 0</h3>
-            <p class="paddedtext" id="clickerawardtext">Click 100 times</p>
-            <div class="awardBarProgress">
-                <div class="awardBar" id="clickrewardbar"></div>
-            </div>
-        </div>
-        <div class="awardcard">
-            <h3 class="paddedtext" id="factoryawardtitle">Factory: Level 0</h3>
-            <p class="paddedtext" id="factoryawardtext">Reach 1 byte per second.</p>
-            <div class="awardBarProgress">
-                <div class="awardBar" id="factoryawardbar"></div>
-            </div>
+<!-- Statistics -->
+<div id="statistics" class="tabcontent">
+    <h2>Statistics</h2>
+    <p style="text-align: center;">View your gameplay statistics</p>
+    <hr>
+    <p>All statistics are updated when this page is opened.</p>
+    <p id="timeplayedcounter">Time played: 0 seconds</p>
+    <h3>Clicking</h3>
+    <p id="clickcountstat">Total clicks: 0</p>
+    <p id="sizeperclickstat">Size per click: 0 bytes</p>
+    <p id="sizefromclicking">Size from clicking: 0 bytes</p>
+    <h3>Upgrades</h3>
+    <p id="upgradesboughtcount">Upgrades bought: 0</p>
+    <p id="autoupgradesboughtcount">Automatic upgrades bought: 0</p>
+    <p id="clickingupgradesboughtcount">Clicking upgrades bought: 0</p>
+    <p id="spentonupscount">Spent on upgrades: 0 bytes</p>
+    <p id="spentonautoupscount">Spent on automatic upgrades: 0 bytes</p>
+    <p id="spentonclickupscount">Spent on click upgrades: 0 bytes</p>
+    <hr>
+    <!-- awards -->
+    <h2>Awards</h2>
+    <p style="text-align: center;">View your award collection</p>
+    <hr>
+    <div class="awardcard">
+        <h3 class="paddedtext" id="clickerawardtitle">Clicker: Level 0</h3>
+        <p class="paddedtext" id="clickerawardtext">Click 100 times</p>
+        <div class="awardBarProgress">
+            <div class="awardBar" id="clickrewardbar"></div>
         </div>
     </div>
+    <div class="awardcard">
+        <h3 class="paddedtext" id="factoryawardtitle">Factory: Level 0</h3>
+        <p class="paddedtext" id="factoryawardtext">Reach 1 byte per second.</p>
+        <div class="awardBarProgress">
+            <div class="awardBar" id="factoryawardbar"></div>
+        </div>
+    </div>
+</div>
 
-    <!-- Cookies Message -->
-    <div class="cookiesmessage" id="cookiespopup">
-        <div class="cookiesmessage-header">COOKIES WOOO!</div>
-        <span class="closecookiesmessage" onclick="closeCookiesPopup()">x</span>
-        <div class="cookiesmessage-container">
-            <p>this uses cookies i guess.</p>
-        </div>
+<!-- Cookies Message -->
+<div class="cookiesmessage" id="cookiespopup">
+    <div class="cookiesmessage-header">COOKIES WOOO!</div>
+    <span class="closecookiesmessage" onclick="closeCookiesPopup()">x</span>
+    <div class="cookiesmessage-container">
+        <p>this uses cookies i guess.</p>
     </div>
-    <!-- snackbar -->
-    <div id="snackbar">Message</div>
-    <script src="java.js"></script>
+</div>
+<!-- snackbar -->
+<div id="snackbar">Message</div>
+<script src="java.js"></script>
 </body>
 </html>
