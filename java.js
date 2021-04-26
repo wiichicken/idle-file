@@ -41,26 +41,18 @@ const scorel = document.getElementById("score");
 const bpscount = document.getElementById("bpscounter");
 const bpcount = document.getElementById("bpcounter");
 // When using the sleep command in a function you must use async or else it won't work!
-function sleep(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
-}
+function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms));}
 // Generates a random integer from a minimum and maximum value
-function randInt(min, max) {
-	return Math.floor(Math.random() * (max - min + 1) ) + min;
-}
+function randInt(min, max) {return Math.floor(Math.random() * (max - min + 1) ) + min;}
 // Rounds a number into a file size format. Has different priority modes, can also add zeroes (to prevent motion)
 function roundSizeDisp(currentDisp, priorityMode, addZeroes) {
 	function ifAddZeroes() {
 		newerdisp = Math.round(newerdisp);
 		newerdisp = newerdisp / 1000;
-		if (addZeroes === 1) {
-			newerdisp = addTheZeroes(newerdisp);
-		}
+		if (addZeroes === 1) {newerdisp = addTheZeroes(newerdisp);}
 	}
-	if (currentDisp === 1) {
-		// @ts-ignore
-		newerdisp = '1 byte';
-	} else {
+	if (currentDisp === 1) {newerdisp = '1 byte';}
+	else {
 		if (currentDisp >= 1000) {
 			if (currentDisp >= 1000000) {
 				if (currentDisp >= 1000000000) {
@@ -88,9 +80,7 @@ function roundSizeDisp(currentDisp, priorityMode, addZeroes) {
 				// KB
 				newerdisp = Math.round(currentDisp);
 				newerdisp = newerdisp / 1000;
-				if (addZeroes === 1) {
-					newerdisp = addTheZeroes(newerdisp);
-				}
+				if (addZeroes === 1) {newerdisp = addTheZeroes(newerdisp);}
 				// @ts-ignore
 				newerdisp = `${newerdisp} KB`;
 			}
@@ -100,9 +90,8 @@ function roundSizeDisp(currentDisp, priorityMode, addZeroes) {
 			// @ts-ignore
 			newerdisp = `${newerdisp} bytes`;
 		}
-	} if (priorityMode === 'n') {
-		newdisp = newerdisp;
-	} else if (priorityMode === 's') {
+	} if (priorityMode === 'n') {newdisp = newerdisp;}
+	else if (priorityMode === 's') {
 		bpscount.innerHTML = newerdisp + " per second";
 		document.getElementById("ontopsps").innerHTML = newerdisp + " per second";
 	} else if (priorityMode === 'm') {
@@ -110,11 +99,8 @@ function roundSizeDisp(currentDisp, priorityMode, addZeroes) {
 		scorel.innerHTML = newerdisp;
 		// @ts-ignore
 		document.getElementById("ontopsize").innerHTML = newerdisp;
-	} else if (priorityMode === "title") {
-		document.querySelector("title").textContent = `${newerdisp} - idle file`;
-	} else {
-		return newerdisp;
-	}
+	} else if (priorityMode === "title") {document.querySelector("title").textContent = `${newerdisp} - idle file`;}
+	else {return newerdisp;}
 }
 // Rounds variables to different non byte displays (like thousands, millions)
 function roundDisp(currentDisp, priorityMode, addZeroes) {
@@ -126,9 +112,7 @@ function roundDisp(currentDisp, priorityMode, addZeroes) {
 					newerdisp = currentDisp / 1000000000;
 					newerdisp = Math.round(newerdisp);
 					newerdisp = newerdisp / 1000;
-					if (addZeroes === 1) {
-						newerdisp = addTheZeroes(newerdisp);
-					}
+					if (addZeroes === 1) {newerdisp = addTheZeroes(newerdisp);}
 					// @ts-ignore
 					newerdisp = `${newerdisp} T`;
 				} else {
@@ -136,9 +120,7 @@ function roundDisp(currentDisp, priorityMode, addZeroes) {
 					newerdisp = currentDisp / 1000000;
 					newerdisp = Math.round(newerdisp);
 					newerdisp = newerdisp / 1000;
-					if (addZeroes === 1) {
-						newerdisp = addTheZeroes(newerdisp);
-					}
+					if (addZeroes === 1) {newerdisp = addTheZeroes(newerdisp);}
 					// @ts-ignore
 					newerdisp = `${newerdisp} B`;
 				}
@@ -147,9 +129,7 @@ function roundDisp(currentDisp, priorityMode, addZeroes) {
 				newerdisp = currentDisp / 1000;
 				newerdisp = Math.round(newerdisp);
 				newerdisp = newerdisp / 1000;
-				if (addZeroes === 1) {
-					newerdisp = addTheZeroes(newerdisp);
-				}
+				if (addZeroes === 1) {newerdisp = addTheZeroes(newerdisp);}
 				// @ts-ignore
 				newerdisp = `${newerdisp} M`;
 			}
@@ -162,9 +142,8 @@ function roundDisp(currentDisp, priorityMode, addZeroes) {
 		// Ones
 		newerdisp = currentDisp
 	}
-	if (priorityMode === 'n') {
-		newdisp = newerdisp;
-	} else if (priorityMode === 's') {
+	if (priorityMode === 'n') {newdisp = newerdisp;}
+	else if (priorityMode === 's') {
 		bpscount.innerHTML = newerdisp + " per second";
 		document.getElementById("ontopsps").innerHTML = newerdisp + " per second";
 	} else if (priorityMode === 'm') {
@@ -172,20 +151,13 @@ function roundDisp(currentDisp, priorityMode, addZeroes) {
 		scorel.innerHTML = newerdisp;
 		// @ts-ignore
 		document.getElementById("ontopsize").innerHTML = newerdisp;
-	} else if (priorityMode === "title") {
-		document.querySelector("title").textContent = `${newerdisp} - idle file`;
-	} else {
-		return newerdisp;
-	}
+	} else if (priorityMode === "title") {document.querySelector("title").textContent = `${newerdisp} - idle file`;}
+	else {return newerdisp;}
 }
 // Adds zeroes to the end of rounded displays (if requested) to prevent motion
-function addTheZeroes(addingVariable) {
-	return parseFloat(addingVariable).toFixed(3);
-}
+function addTheZeroes(addingVariable) {return parseFloat(addingVariable).toFixed(3);}
 // Adds commas to a number to make it more readable. Taken from StackOverflow (https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript)
-function addCommasToNumber(addingVariable) {
-	return addingVariable.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+function addCommasToNumber(addingVariable) {return addingVariable.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 
 // * Displays *
 
@@ -243,16 +215,14 @@ function refreshBPS() {
 // A base for refreshing displays on special buttons
 function refreshSpecialModel(pointVariable, pointReq, ElementIdent, lockedend, unlockedtext, doRound) {
 	const elmchang = document.getElementById(ElementIdent);
-	if (pointVariable >= pointReq) {
-		elmchang.innerHTML = unlockedtext;
-	} else {
+	// shows the text when its uplocked i guess
+	if (pointVariable >= pointReq) {elmchang.innerHTML = unlockedtext;}
+	else {
 		const subtractending = pointReq - pointVariable;
 		if (doRound === 1) {
 			roundSizeDisp(subtractending, 'n', 1);
 			elmchang.innerHTML = newdisp + lockedend;
-		} else {
-			elmchang.innerHTML = subtractending + lockedend;
-		}
+		} else {elmchang.innerHTML = subtractending + lockedend;}
 	}
 }
 // Checks to see if something was unlocked, and displays a snackbar if it was
@@ -261,12 +231,8 @@ function checkSpecial(pointVariable, pointReq, isUnlockedVar, unlockMessage, dis
 		if (pointVariable >= pointReq) {
 			displaySnackbar(displayTime, unlockMessage);
 			return 1;
-		} else {
-			return 0;
-		}
-	} else {
-		return 1;
-	}
+		} else {return 0;}
+	} else {return 1;}
 }
 let sizefromclicking = 0;
 let selfsusunlocked = 0;
@@ -357,11 +323,8 @@ function checkBuildLevel() {
 // Adds file size to the score. Use this instead of directly adding onto the variable
 function addFileSize(addingVariable) {
 	const addedsize = size + addingVariable;
-	if (addedsize >= 256000000000000) {
-		size = 256000000000000;
-	} else {
-		size = size + addingVariable;
-	}
+	if (addedsize >= 256000000000000) {size = 256000000000000;}
+	else {size = size + addingVariable;}
 }
 // Used to create a typing effect
 async function typingEffect(typingText, typingSpeed, typingElement) {
@@ -534,15 +497,9 @@ function buyCopyPaste() {
 	}
 }
 // Other upgrades
-function buyBadAi() {
-	extraspsps = specialUpgrade(10000000, 600, playedseconds, extraspsps, 1, "aiupgradediv");
-}
-function buySelfSustainedMachine() {
-	clickbonus = specialUpgrade(10000000, 1500, clickcount, clickbonus, 1, "selfsusmach");
-}
-function buyPlasticCursor() {
-	clickbonus = specialUpgrade(1000000, 100000, sizefromclicking, clickbonus, 0.01, "plasticursor");
-}
+function buyBadAi() {extraspsps = specialUpgrade(10000000, 600, playedseconds, extraspsps, 1, "aiupgradediv");}
+function buySelfSustainedMachine() {clickbonus = specialUpgrade(10000000, 1500, clickcount, clickbonus, 1, "selfsusmach");}
+function buyPlasticCursor() {clickbonus = specialUpgrade(1000000, 100000, sizefromclicking, clickbonus, 0.01, "plasticursor");}
 // Changes the color of the buttons to green if you can afford to buy something
 async function updateButtons() {
 	const throwaway1 = -10;
@@ -591,12 +548,8 @@ function getCookie(cname) {
 	var ca = decodedCookie.split(';');
 	for(var i = 0; i <ca.length; i++) {
 		var c = ca[i];
-		while (c.charAt(0) == ' ') {
-			c = c.substring(1);
-		}
-		if (c.indexOf(name) == 0) {
-			return c.substring(name.length, c.length);
-		}
+		while (c.charAt(0) == ' ') {c = c.substring(1);}
+		if (c.indexOf(name) == 0) {return c.substring(name.length, c.length);}
 	}
 	return "";
 }
@@ -604,11 +557,8 @@ let seencookies = 0;
 // Loads a varaible from the cookies and then converts it to a number. Sets the variable to 0 if there is nothing there.
 function loadCvar(cookieLoad) {
 	const loadedcount = getCookie(cookieLoad);
-	if (loadedcount != "") {
-		return Number(loadedcount);
-	} else {
-		return 0;
-	}
+	if (loadedcount != "") {return Number(loadedcount);}
+	else {return 0;}
 }
 
 // * Settings/Others *
@@ -647,36 +597,26 @@ async function updatePageTitleOnStart() {
 // If there is no special variable use 'n' for the specialReq and specialVar
 function buttonColor(objectId, varnumber, specialReq, specialVar) {
 	if (specialReq === 'n') {
-		if (size >= varnumber) {
-			changeObjectColor(objectId, "greenyellow", "black");
-		} else {
-			changeObjectColor(objectId, "red", "black");
-		}
+		// used when there is no special variable
+		if (size >= varnumber) {changeObjectColor(objectId, "greenyellow", "black");}
+		else {changeObjectColor(objectId, "red", "black");}
 	} else if (specialVar >= specialReq) {
-		if (size >= varnumber) {
-			changeObjectColor(objectId, "greenyellow", "black");
-		} else {
-			changeObjectColor(objectId, "red", "black");
-		}
-	} else if (isDarkModeEnabled === 0) {
-		changeObjectColor(objectId, "black", "white");
-	} else {
-		changeObjectColor(objectId, "white", "black");
+		// used when there is a special variable
+		if (size >= varnumber) {changeObjectColor(objectId, "greenyellow", "black");}
+		else {changeObjectColor(objectId, "red", "black");}
 	}
+	else if (isDarkModeEnabled === 0) {changeObjectColor(objectId, "black", "white");}
+	else {changeObjectColor(objectId, "white", "black");}
 }
 // Uses cookies to automatically enable dark theme if it has been previously enabled
 function loadDarkTheme() {
 	savedarkmodenabled = loadCvar("darkthemesaved");
-	if (savedarkmodenabled === 1) {
-		toggleDarkMode();
-	}
+	if (savedarkmodenabled === 1) {toggleDarkMode();}
 }
 // Updates all of the button displays
 function updateAllDisplays() {
 	function ifGreaterThanShow(showvar, elementToShow) {
-		if (showvar >= 1) {
-			document.getElementById(elementToShow).style.display = "inline";
-		}
+		if (showvar >= 1) {document.getElementById(elementToShow).style.display = "inline";}
 	}
 	roundSizeDisp(spscost, 'n', 1);
 	document.getElementById("keypresser").innerHTML = "Keypresser (" + newdisp + ", +1 byte per second)";
@@ -726,18 +666,14 @@ function toggleBytesPerClick() {
 	if (showbpc === 0) {
 		showbpc = 1;
 		bpcount.style.display = "block";
-		if (ismobile === 0) {
-			document.getElementById("ontopspc").style.display = "block";
-		}
+		if (ismobile === 0) {document.getElementById("ontopspc").style.display = "block";}
 		bpscount.style.marginBottom = "5px";
 		showbpcbutton.innerHTML = "Disable Bytes Per Click Counter";
 		showbpcbutton.style.backgroundColor = "greenyellow";
 	} else {
 		showbpc = 0;
 		bpcount.style.display = "none";
-		if (ismobile === 0) {
-			document.getElementById("ontopspc").style.display = "none";
-		}
+		if (ismobile === 0) {document.getElementById("ontopspc").style.display = "none";}
 		bpscount.style.marginBottom = "10px";
 		showbpcbutton.innerHTML = "Enable Bytes Per Click Counter";
 		showbpcbutton.style.backgroundColor = "red";
@@ -748,16 +684,12 @@ function openPage(pageName) {
 	if (isloading === 0) {
 		var i, tabcontent;
 		tabcontent = document.getElementsByClassName("tabcontent");
-		for (i = 0; i < tabcontent.length; i++) {
-			tabcontent[i].style.display = "none";
-		}
+		for (i = 0; i < tabcontent.length; i++) {tabcontent[i].style.display = "none";}
 		document.getElementById(pageName).style.display = "block";
 	}
 }
 function modeToggle(modeToToggle) {
-	if (modeToToggle === 'roundmaindisp') {
-		doRoundDisplay = toggleVariable(doRoundDisplay, 'doroundisplay', 'greenyellow', 'red', 'black', 'black', 'Disable Score Rounding', 'Enable score rounding');
-	}
+	if (modeToToggle === 'roundmaindisp') {doRoundDisplay = toggleVariable(doRoundDisplay, 'doroundisplay', 'greenyellow', 'red', 'black', 'black', 'Disable Score Rounding', 'Enable score rounding');}
 }
 let hoursplayed = 0;
 let hoursplayedremainder = 0;
@@ -787,11 +719,8 @@ function roundTimeDisplay(timeVariable) {
 // Checks if an element is hidden, and if it is, unhide it, and if it is not, hide it
 function toggleHidingElement(elementToToggle) {
 	const thelement = document.getElementById(elementToToggle);
-	if (window.getComputedStyle(thelement).display === "none") {
-		thelement.style.display = "inline";
-	} else {
-		thelement.style.display = "none";
-	}
+	if (window.getComputedStyle(thelement).display === "none") {thelement.style.display = "inline";}
+	else {thelement.style.display = "none";}
 }
 // Updates the statistics page and then opens it
 function openStatsPage() {
@@ -802,11 +731,9 @@ function openStatsPage() {
 	const truesizeperclick = spc + newsizeperclick1;
 	addCommasToNumber(truesizeperclick);
 	// If the size per click is 1, don't add an s to the end of the stat
-	if (spc === 1) {
-		document.getElementById("sizeperclickstat").innerHTML = `Size per click: ${spc} byte`;
-	} else {
-		document.getElementById("sizeperclickstat").innerHTML = `Size per click: ${newdisp}`;
-	}
+	if (spc === 1) {document.getElementById("sizeperclickstat").innerHTML = `Size per click: ${spc} byte`;}
+	else {document.getElementById("sizeperclickstat").innerHTML = `Size per click: ${newdisp}`;}
+	// update the displays
 	roundSizeDisp(sizefromclicking, 'n', 1);
 	const newsizefromclicks = addCommasToNumber(sizefromclicking);
 	document.getElementById("sizefromclicking").innerHTML = `Size from clicking: ${newdisp}`;
@@ -896,9 +823,7 @@ function thisIsTheSecret(secretKey) {
 	if (secretKey === 'babybubby') {
 		document.write("<h1>AHHHH! YOU FOUND THE SECRET WAZE PAGE!</h1>");
 		document.write('<iframe src="https://embed.waze.com/iframe?zoom=13&lat=40.78247&lon=-73.97105&pin=1" width="100%" height="520"></iframe>');
-	} else {
-		console.log("haha noob you dont have da secret key so u cant use da secret page");
-	}
+	} else {console.log("haha noob you dont have da secret key so u cant use da secret page");}
 }
 // Gives the tutorial a typing effect
 async function welcomeTypingEffect() {
@@ -926,13 +851,10 @@ function closeCookiesPopup() {
 // Checks to see if the cookies pop-up has already been shown before
 function loadCookiesPopup() {
 	seencookies = loadCvar("seencookiesaved");
-	if (seencookies === 1) {
-		// If the cookies pop-up has already been shown, don't show it
-		document.getElementById("cookiespopup").style.visibility = "hidden";
-	} else {
-		// If the cookies pop-up has not been shown yet, show it
-		document.getElementById("cookiespopup").style.visibility = "visible";
-	}
+	// If the cookies pop-up has already been shown, don't show it
+	if (seencookies === 1) {document.getElementById("cookiespopup").style.visibility = "hidden";}
+	// If the cookies pop-up has not been shown yet, show it
+	else {document.getElementById("cookiespopup").style.visibility = "visible";}
 }
 let doautoload = 0;
 let doautosave = 0;
@@ -964,9 +886,7 @@ async function autoSaveGame() {
 	const throwaway2 = 10;
 	while (throwaway1 < throwaway2) {
 		await sleep(60000);
-		if (doautosave === 1) {
-			saveGame(1);
-		}
+		if (doautosave === 1) {saveGame(1);}
 	}
 }
 // Toggles automatically loading game data
@@ -1009,11 +929,8 @@ function percentCalc(number1, number2) {
 function progressBar(cardElementId, number1, number2) {
 	var elem = document.getElementById(cardElementId);
 	var width = percentCalc(number1, number2);
-	if (width >= 100) {
-		elem.style.width = "100%";
-	} else {
-		elem.style.width = width + "%";
-	}
+	if (width >= 100) {elem.style.width = "100%";}
+	else {elem.style.width = width + "%";}
 }
 // To prevent lag, creates a fake page loading page (technically it is loading stuff)
 // TODO: Work on improving the code for the random color
@@ -1022,15 +939,10 @@ async function pageFakeLoad() {
 	// Gives the glow of the loading spinner a random color
 	const randomspinnerselection = randInt(1, 4);
 	const firl = document.getElementById("firstloader");
-	if (randomspinnerselection === 1) {
-		firl.style.boxShadow = "0 0px 30px 0 red";
-	} else if (randomspinnerselection === 2) {
-		firl.style.boxShadow = "0 0px 30px 0 yellow";
-	} else if (randomspinnerselection === 3) {
-		firl.style.boxShadow = "0 0px 30px 0 green";
-	} else {
-		firl.style.boxShadow = "0 0px 30px 0 cyan";
-	}
+	if (randomspinnerselection === 1) {firl.style.boxShadow = "0 0px 30px 0 red";}
+	else if (randomspinnerselection === 2) {firl.style.boxShadow = "0 0px 30px 0 yellow";}
+	else if (randomspinnerselection === 3) {firl.style.boxShadow = "0 0px 30px 0 green";}
+	else {firl.style.boxShadow = "0 0px 30px 0 cyan";}
 	// Opens the loading page and then waits a random amount of time
 	openPage('loaderpage');
 	isloading = 1;
@@ -1042,9 +954,7 @@ async function pageFakeLoad() {
 	welcomeTypingEffect();
 }
 // Opens the mobile navigation menu
-function openMobileNavigation() {
-	document.getElementById("mobilenavdropdown").classList.toggle("show");
-}
+function openMobileNavigation() {document.getElementById("mobilenavdropdown").classList.toggle("show");}
 
 // * Saving and Loading *
 
@@ -1075,9 +985,7 @@ function saveGame(showSnackbar) {
 	setCookie("spentclicksaved", spentonclickupgrades, 2000);
 	setCookie("copypastecostsaved", copypastecost, 2000);
 	setCookie("sizefromclickingsaved", sizefromclicking, 2000);
-	if (showSnackbar === 1) {
-		displaySnackbar(1000, 'Game data saved!');
-	}
+	if (showSnackbar === 1) {displaySnackbar(1000, 'Game data saved!');}
 	const tempdate = Date();
 	document.getElementById("lastsavedtext").innerHTML = `Last saved at: ${tempdate}`;
 }
@@ -1135,20 +1043,15 @@ window.onclick = function(event) {
 		var i;
 		for (i = 0; i < dropdowns.length; i++) {
 			var openDropdown = dropdowns[i];
-			if (openDropdown.classList.contains('show')) {
-				openDropdown.classList.remove('show');
-			}
+			if (openDropdown.classList.contains('show')) {openDropdown.classList.remove('show');}
 		}
 	}
 }
 // Shows the bar at the top of the screen when scrolled
 window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
-	if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-		document.getElementById("topbar").style.top = "0";
-	} else {
-		document.getElementById("topbar").style.top = "-60px";
-	}
+	if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {document.getElementById("topbar").style.top = "0";}
+	else {document.getElementById("topbar").style.top = "-60px";}
 }
 // Commands to be run when the document is run
 secondlyPoints();
