@@ -611,6 +611,8 @@ function buttonColor(objectId, varnumber, specialReq, specialVar) {
 // Uses cookies to automatically enable dark theme if it has been previously enabled
 function loadDarkTheme() {
 	savedarkmodenabled = loadCvar("darkthemesaved");
+	// if your browser has dark mode enabled automatically enable it here
+	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {savedarkmodenabled === 1;}
 	if (savedarkmodenabled === 1) {toggleDarkMode();}
 }
 // Updates all of the button displays

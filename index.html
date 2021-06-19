@@ -99,7 +99,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <hr>
     
     <!-- Automatic Upgrades -->
-    <div>
+    <div id="autoupgrades" class="shopcolumn">
         <h2 style="margin: 3px;">Automatic Upgrades</h2>
         <p style="text-align: center; margin: 3px;">These upgrades increase your file size automatically</p>
         <button id="keypresser" class="upgradebutton" style="display: inline;" onclick="upgradeSPS()">Keypresser (15 bytes, +1 byte per second)</button>
@@ -110,7 +110,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <!-- Clicking Upgrades -->
-    <div>
+    <div id="clickupgrades" class="shopcolumn">
         <h2 id="clickuphead" style="margin: 3px;">Clicking Upgrades</h2>
         <p style="text-align: center; margin: 3px;" id="clickuptext">These upgrades increase your file size even more per click</p>
         <button id="fingerpurchase" class="upgradebutton" onclick="buyFinger()">Extra Finger (250 bytes, +1 byte per click)</button>
@@ -120,24 +120,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <!-- More Upgrades -->
-    <div>
+    <div id="moreupgrades" class="shopcolumn">
         <h2 style="margin: 3px;">More Upgrades</h2>
         <p style="text-align: center; margin: 3px;">Hover over an upgrade for more information</p>
-        <div class="tooltip" id="aiupgradediv">
-            <button id="aiupgradebutton" onclick="buyBadAi()">600 seconds remaining!</button>
-            <span class="tooltiptext">Increases your bytes per second by 1 every second</span>
-            <p class="explaintext">Increases your bytes per second by 1 every second</p>
-        </div>
-        <div class="tooltip" id="selfsusmach">
-            <button id="selfsusmachine" onclick="buySelfSustainedMachine()">1500 clicks remaining!</button>
-            <span class="tooltiptext">Increases your bytes per second by 1 for every click</span>
-            <p class="explaintext">Increases your bytes per second by 1 for every click</p>
-        </div>
-        <div class="tooltip" id="plasticursor">
-            <button id="purchaseplasticursor" onclick="buyPlasticCursor()">1000 bps remaining!</button>
-            <span class="tooltiptext">Clicking gains 1% of your bytes per second</span>
-            <p class="explaintext">Clicking gains 1% of your bytes per second</p>
-        </div>
+        <button class="specialupgrade" id="aiupgradebutton" onclick="buyBadAi()">600 seconds remaining!</button>
+        <p id="aiuptext">increases your bytes per second by 1 every second</p>
+        <button class="specialupgrade" id="selfsusmachine" onclick="buySelfSustainedMachine()">1500 clicks remaining!</button>
+        <p id="selfsustext">increases your bytes per second by 1 every second</p>
+        <button class="specialupgrade" id="purchaseplasticursor" onclick="buyPlasticCursor()">1000 bps remaining!</button>
+        <p id="plastictext">clicking gains 1% of your bytes per second</p>
     </div>
 </div>
 
