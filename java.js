@@ -394,13 +394,14 @@ function clickUpgrade(upincrease, sizevar) {
 	return newcost;
 }
 // Base for upgrades that are of other types
-function specialUpgrade(cost, req, reqvar, varToIncrease, increaseValue, elementIden) {
+function specialUpgrade(cost, req, reqvar, varToIncrease, increaseValue, elementIden, levelThing) {
 	if ((reqvar >= req) && (size >= cost)) {
 		size = size - cost;
 		refreshAll();
 		upgradesbought++;
 		spentonupgrades = spentonupgrades + cost;
 		document.getElementById(elementIden).style.display = "none";
+		document.getElementById(levelThing).innerHTML = "level 1";
 		return varToIncrease + increaseValue;
 	}
 }
@@ -497,9 +498,9 @@ function buyCopyPaste() {
 	}
 }
 // Other upgrades
-function buyBadAi() {extraspsps = specialUpgrade(10000000, 600, playedseconds, extraspsps, 1, "aiupgradediv");}
-function buySelfSustainedMachine() {clickbonus = specialUpgrade(10000000, 1500, clickcount, clickbonus, 1, "selfsusmach");}
-function buyPlasticCursor() {clickbonus = specialUpgrade(1000000, 100000, sizefromclicking, clickbonus, 0.01, "plasticursor");}
+function buyBadAi() {extraspsps = specialUpgrade(10000000, 600, playedseconds, extraspsps, 1, "aiupgradediv", "ailevel");}
+function buySelfSustainedMachine() {clickbonus = specialUpgrade(10000000, 1500, clickcount, clickbonus, 1, "selfsusmach", "machinelevel");}
+function buyPlasticCursor() {clickbonus = specialUpgrade(1000000, 100000, sizefromclicking, clickbonus, 0.01, "plasticursor", "machinelevel");}
 // Changes the color of the buttons to green if you can afford to buy something
 async function updateButtons() {
 	const throwaway1 = -10;
@@ -617,22 +618,25 @@ function loadDarkTheme() {
 }
 // Updates all of the button displays
 function updateAllDisplays() {
-	function ifGreaterThanShow(showvar, elementToShow) {
-		if (showvar >= 1) {document.getElementById(elementToShow).style.display = "inline";}
+	function ifGreaterThanShow(showvar, elementToShow, elementToHide) {
+		if (showvar >= 1) {
+			document.getElementById(elementToShow).style.display = "inline";
+			document.getElementById(elementToHide).style.display = "none";
+		}
 	}
 	roundSizeDisp(spscost, 'n', 1);
 	document.getElementById("keypresser").innerHTML = "Keypresser (" + newdisp + ", +1 byte per second)";
-	ifGreaterThanShow(boughtpressers, "catbuy");
+	ifGreaterThanShow(boughtpressers, "catbuy", "lockedcat");
 	ifGreaterThanShow(boughtpressers, "fingerpurchase");
 	roundSizeDisp(catcost, 'n', 1);
 	document.getElementById("catbuy").innerHTML = "Cat (" + newdisp + ", +5 bytes per second)";
-	ifGreaterThanShow(boughtcats, "holdbuy");
+	ifGreaterThanShow(boughtcats, "holdbuy", "lockedhold");
 	roundSizeDisp(holdcost, 'n', 1);
 	document.getElementById("holdbuy").innerHTML = "Key Holder (" + newdisp + ", +30 bytes per second)";
-	ifGreaterThanShow(boughtholders, "macrobuy");
+	ifGreaterThanShow(boughtholders, "macrobuy", "lockedmacro");
 	roundSizeDisp(macrocost, 'n', 1);
 	document.getElementById("macrobuy").innerHTML = "Word Macro (" + newdisp +", +250 bytes per second)";
-	ifGreaterThanShow(boughtmacros, "collabuy");
+	ifGreaterThanShow(boughtmacros, "collabuy", "lockedmacro");
 	roundSizeDisp(colabcost, 'n', 1);
 	document.getElementById("collabuy").innerHTML = "Collab Document (" + newdisp + ", +5 KB per second)";
 	roundSizeDisp(fingercost, 'n', 1);
@@ -681,13 +685,46 @@ function toggleBytesPerClick() {
 		showbpcbutton.style.backgroundColor = "red";
 	}
 }
-// Opens a page from the navigation
+let isHome = 0;
+// opens a page from the navigation. if the same page is opened twice it should return back to the home screen
 function openPage(pageName) {
 	if (isloading === 0) {
-		var i, tabcontent;
-		tabcontent = document.getElementsByClassName("tabcontent");
-		for (i = 0; i < tabcontent.length; i++) {tabcontent[i].style.display = "none";}
-		document.getElementById(pageName).style.display = "block";
+		if (pageName === 'settings') {
+			if (isHome === 2) {
+				isHome = 0;
+				var i, tabcontent;
+				tabcontent = document.getElementsByClassName("tabcontent");
+				for (i = 0; i < tabcontent.length; i++) {tabcontent[i].style.display = "none";}
+				document.getElementById('upspage').style.display = "block";
+			} else {
+				isHome = 2;
+				var i, tabcontent;
+				tabcontent = document.getElementsByClassName("tabcontent");
+				for (i = 0; i < tabcontent.length; i++) {tabcontent[i].style.display = "none";}
+				document.getElementById(pageName).style.display = "block";
+			}
+		}
+		if (pageName === 'statistics') {
+			if (isHome === 1) {
+				isHome = 0;
+				var i, tabcontent;
+				tabcontent = document.getElementsByClassName("tabcontent");
+				for (i = 0; i < tabcontent.length; i++) {tabcontent[i].style.display = "none";}
+				document.getElementById('upspage').style.display = "block";
+			} else {
+				isHome = 1;
+				var i, tabcontent;
+				tabcontent = document.getElementsByClassName("tabcontent");
+				for (i = 0; i < tabcontent.length; i++) {tabcontent[i].style.display = "none";}
+				document.getElementById(pageName).style.display = "block";
+			}
+		} else {
+			if (pageName === 'upspage') {isHome = 0;} else {isHome = 1;}
+			var i, tabcontent;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {tabcontent[i].style.display = "none";}
+			document.getElementById(pageName).style.display = "block";
+		}
 	}
 }
 function modeToggle(modeToToggle) {
@@ -955,8 +992,6 @@ async function pageFakeLoad() {
 	openPage('tutorial');
 	welcomeTypingEffect();
 }
-// Opens the mobile navigation menu
-function openMobileNavigation() {document.getElementById("mobilenavdropdown").classList.toggle("show");}
 
 // * Saving and Loading *
 

@@ -24,7 +24,8 @@
     <meta name="description" content="Idle File is a work in progress game where the goal is to try and create the biggest file you can.">
     <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <noscript>Sorry, but you cannot play this game because you either have JavaScript disabled or your browser dosen't support JavaScript.</noscript>
 </head>
 <body>
@@ -50,21 +51,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <!-- type button -->
 <button id="singlebytebutton" onclick="oneByte()">Type</button>
-<hr>
-<!-- navigation menu (mobile) -->
-<div class="dropdown">
-    <button onclick="openMobileNavigation()" class="dropbtn">Navigation</button>
-    <!-- menu content -->
-    <div id="mobilenavdropdown" class="dropdown-content">
-        <a onclick="openPage('upspage')">Shop</a>
-        <a onclick="openStatsPage()">Statistics</a>
-        <a onclick="openPage('settings')">Settings</a>
-    </div>
-</div>
 <!-- navigation menu (desktop) -->
-<button class="tablink" id="autnav" onclick="openPage('upspage')">Shop</button>
-<button class="tablink" id="stanav" onclick="openStatsPage()">Statistics</button>
-<button class="tablink" id="setnav" onclick="openPage('settings')">Settings</button>
+<div id="desktopnav" style="padding-top: 10px;">
+    <button class="tablink" id="stanav" onclick="openStatsPage()">Statistics</button>
+    <span class="material-icons-two-tone">
+    settings
+    </span>
+    <button class="tablink" id="setnav" onclick="openPage('settings')">Settings</button>
+</div>
+<hr>
 
 <!-- This page should show up if there was an error loading the CSS of the page. -->
 <div id="missingcss" class="tabcontent">
@@ -102,11 +97,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="autoupgrades" class="shopcolumn">
         <h2 style="margin: 3px;">Automatic Upgrades</h2>
         <p style="text-align: center; margin: 3px;">These upgrades increase your file size automatically</p>
+        <!-- keypresser -->
         <button id="keypresser" class="upgradebutton" style="display: inline;" onclick="upgradeSPS()">Keypresser (15 bytes, +1 byte per second)</button>
+        <!-- cat -->
         <button id="catbuy" class="upgradebutton" onclick="buyCat()">Cat (150 bytes, 5+ bytes per second)</button>
+        <button id="lockedcat" class="lockedup">locked</button>
+        <!-- key holder -->
         <button id="holdbuy" class="upgradebutton" onclick="buyHold()">Key Holder (1 KB, +30 bytes per second)</button>
+        <button id="lockedhold" class="lockedup">locked</button>
+        <!-- word macro -->
         <button id="macrobuy" class="upgradebutton" onclick="buyWordMacro()">Word Macro (50 KB, +250 bytes per second)</button>
+        <button id="lockedmacro" class="lockedup">locked</button>
+        <!-- collab document -->
         <button id="collabuy" class="upgradebutton" onclick="buyCollab()">Collab Document (1 MB, +5 KB per second)</button>
+        <button id="lockedcollab" class="lockedup">locked</button>
     </div>
 
     <!-- Clicking Upgrades -->
@@ -122,18 +126,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- More Upgrades -->
     <div id="moreupgrades" class="shopcolumn">
         <h2 style="margin: 3px;">More Upgrades</h2>
-        <p style="text-align: center; margin: 3px;">Hover over an upgrade for more information</p>
-        <button class="specialupgrade" id="aiupgradebutton" onclick="buyBadAi()">600 seconds remaining!</button>
-        <p id="aiuptext">increases your bytes per second by 1 every second</p>
-        <button class="specialupgrade" id="selfsusmachine" onclick="buySelfSustainedMachine()">1500 clicks remaining!</button>
-        <p id="selfsustext">increases your bytes per second by 1 every second</p>
-        <button class="specialupgrade" id="purchaseplasticursor" onclick="buyPlasticCursor()">1000 bps remaining!</button>
-        <p id="plastictext">clicking gains 1% of your bytes per second</p>
+        <p class= style="text-align: center; margin: 3px;">special upgrades that do all sorts of wacky stuff</p>
+        <div>
+            <h3 class="specialtitle">ai</h3>
+            <p class="levelcaption" id="ailevel">not unlocked</p>
+            <p class="specialdescription" id="aiuptext">increases your bytes per second by 1 every second</p>
+            <button class="specialupgrade" id="aiupgradebutton" onclick="buyBadAi()">600 seconds remaining!</button>
+        </div>
+        <div>
+            <h3 class="specialtitle">machine</h3>
+            <p class="levelcaption" id="machinelevel">not unlocked</p>
+            <p class="specialdescription" id="selfsustext">increases your bytes per second by 1 every second</p>
+            <button class="specialupgrade" id="selfsusmachine" onclick="buySelfSustainedMachine()">1500 clicks remaining!</button>
+        </div>
+        <div>
+            <h3 class="specialtitle">cursor</h3>
+            <p class="levelcaption" id="machinelevel">not unlocked</p>
+            <p class="specialdescription" id="plastictext">clicking gains 1% of your bytes per second</p>
+            <button class="specialupgrade" id="purchaseplasticursor" onclick="buyPlasticCursor()">1000 bps remaining!</button>
+        </div>
     </div>
 </div>
 
 <!-- settings -->
 <div id="settings" class="tabcontent">
+    <div class="smallmenu">
+        <div class="arrow" style="transform: rotateZ(140deg); display: inline-block;" onclick="openPage('upspage')"></div>
+        <p style="display: inline;">settings</p>
+    </div>
+    <hr>
     <h2>Settings</h2>
     <p style="text-align: center;">Customize your game experience</p>
     <hr>
@@ -195,6 +216,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- Tutorial -->
 <div id="tutorial" class="tabcontent">
+    <div class="smallmenu">
+        <div class="arrow" style="transform: rotateZ(140deg); display: inline-block;" onclick="openPage('upspage')"></div>
+        <p style="display: inline;">tutorial</p>
+    </div>
+    <hr>
     <h2 id="welcometext" style="text-rendering: optimizeSpeed;">Welcome to Idle File!</h2>
     <p id="clickonbuttontext" style="text-align: center;">Click on the large "Type" button to get bytes.</p>
     <p id="howtospendtext" style="text-align: center;">You can spend your bytes on upgrades to help you earn bytes faster.</p>
@@ -206,6 +232,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- Statistics -->
 <div id="statistics" class="tabcontent">
+    <div class="smallmenu">
+        <div class="arrow" style="transform: rotateZ(140deg); display: inline-block;" onclick="openPage('upspage')"></div>
+        <p style="display: inline;">statistics</p>
+    </div>
+    <hr>
     <h2>Statistics</h2>
     <p style="text-align: center;">View your gameplay statistics</p>
     <hr>
