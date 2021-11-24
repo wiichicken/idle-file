@@ -161,6 +161,17 @@ function addCommasToNumber(addingVariable) {return addingVariable.toString().rep
 
 // * Displays *
 
+let alertbarmessages = [ "sub to me im ayden williams gamer spread the word", "click install baby girl!", "key fact: waze is made in the world's most beautiful world.", "whats poppin samantha?"];
+// updates the alert bar every 15 seconds
+async function updateAlertBar() {
+	const throwaway1 = -10;
+	const throwaway2 = 10;
+	while (throwaway1 < throwaway2) {
+		const selectedMessage = alertbarmessages[Math.floor(Math.random() * alertbarmessages.length)];
+		document.getElementById("alertbartext").innerHTML = selectedMessage;
+		await sleep(15000);
+	}
+}
 let doRoundDisplay = 1;
 // Updates the size counter and title of the page
 function refreshSize() {
@@ -600,11 +611,11 @@ function buttonColor(objectId, varnumber, specialReq, specialVar) {
 	if (specialReq === 'n') {
 		// used when there is no special variable
 		if (size >= varnumber) {changeObjectColor(objectId, "greenyellow", "black");}
-		else {changeObjectColor(objectId, "red", "black");}
+		else {changeObjectColor(objectId, "red", "white");}
 	} else if (specialVar >= specialReq) {
 		// used when there is a special variable
 		if (size >= varnumber) {changeObjectColor(objectId, "greenyellow", "black");}
-		else {changeObjectColor(objectId, "red", "black");}
+		else {changeObjectColor(objectId, "red", "white");}
 	}
 	else if (isDarkModeEnabled === 0) {changeObjectColor(objectId, "black", "white");}
 	else {changeObjectColor(objectId, "white", "black");}
@@ -627,7 +638,7 @@ function updateAllDisplays() {
 	roundSizeDisp(spscost, 'n', 1);
 	document.getElementById("keypresser").innerHTML = "Keypresser (" + newdisp + ", +1 byte per second)";
 	ifGreaterThanShow(boughtpressers, "catbuy", "lockedcat");
-	ifGreaterThanShow(boughtpressers, "fingerpurchase");
+	ifGreaterThanShow(boughtpressers, "fingerpurchase", "lockedfinger");
 	roundSizeDisp(catcost, 'n', 1);
 	document.getElementById("catbuy").innerHTML = "Cat (" + newdisp + ", +5 bytes per second)";
 	ifGreaterThanShow(boughtcats, "holdbuy", "lockedhold");
@@ -641,13 +652,13 @@ function updateAllDisplays() {
 	document.getElementById("collabuy").innerHTML = "Collab Document (" + newdisp + ", +5 KB per second)";
 	roundSizeDisp(fingercost, 'n', 1);
 	document.getElementById("fingerpurchase").innerHTML = "Extra Finger (" + newdisp + ", +1 byte per click)";
-	ifGreaterThanShow(boughtfingers, "keyboardpurchase");
+	ifGreaterThanShow(boughtfingers, "keyboardpurchase", "lockedkeyboard");
 	roundSizeDisp(keycost, 'n', 1);
 	document.getElementById("keyboardpurchase").innerHTML = `Extra Keyboard (${newdisp}, +40 bytes per click)`;
-	ifGreaterThanShow(boughtkeys, "macrobutpurchase");
+	ifGreaterThanShow(boughtkeys, "macrobutpurchase", "lockedmacrobut");
 	roundSizeDisp(macrobuttoncost, 'n', 1);
 	document.getElementById("macrobutpurchase").innerHTML = `Macro Button (${newdisp}, +500 bytes per click)`;
-	ifGreaterThanShow(boughtmacrobuts, "copypastepurchase");
+	ifGreaterThanShow(boughtmacrobuts, "copypastepurchase", "lockedcopypaste");
 	roundSizeDisp(copypastecost, 'n', 1);
 	document.getElementById("copypastepurchase").innerHTML = `Copy Paste (${newdisp}, +10 KB per click)`;
 }
@@ -864,24 +875,6 @@ function thisIsTheSecret(secretKey) {
 		document.write('<iframe src="https://embed.waze.com/iframe?zoom=13&lat=40.78247&lon=-73.97105&pin=1" width="100%" height="520"></iframe>');
 	} else {console.log("haha noob you dont have da secret key so u cant use da secret page");}
 }
-// Gives the tutorial a typing effect
-async function welcomeTypingEffect() {
-	document.getElementById("welcometext").innerHTML = "";
-	document.getElementById("clickonbuttontext").innerHTML = "";
-	document.getElementById("howtospendtext").innerHTML = "";
-	document.getElementById("viewupgradestext").innerHTML = "";
-	document.getElementById("changesettingstext").innerHTML = "";
-	document.getElementById("viewtutorialagaintext").innerHTML = "";
-	document.getElementById("havefuntext").innerHTML = "";
-	await typingEffect("Welcome to Idle File!", 50, "welcometext");
-	await typingEffect("Click on the large \"Type\" button to get bytes.", 10, "clickonbuttontext");
-	await typingEffect("You can spend your bytes on different upgrades to help you earn bytes faster.", 10, "howtospendtext");
-	await typingEffect("You can view different upgrade types by using the menus.", 10, "viewupgradestext");
-	await typingEffect("Change your settings in the settings menu to customize your experience.", 10, 
-	"changesettingstext");
-	await typingEffect("You can view this tutorial again from the settings menu.", 10, "viewtutorialagaintext");
-	await typingEffect("Have fun playing!", 25, "havefuntext");
-}
 // Used to close the pop-up warning about cookies, as well as prevents it from showing again
 function closeCookiesPopup() {
 	document.getElementById("cookiespopup").style.visibility = "hidden";
@@ -989,10 +982,31 @@ async function pageFakeLoad() {
 	await sleep(randomloadtime);
 	// Works on starting the actual game
 	isloading = 0;
-	openPage('tutorial');
-	welcomeTypingEffect();
+	openPage('upspage');
 }
-
+// toggles the scrolling bar at the top of the screen
+function toggleAlertBar() {
+	const alertaBar = document.getElementById("thealertbar");
+	const toggleButThing = document.getElementById("togglealbarbut");
+	if (alertaBar.style.display === "none") {
+		alertaBar.style.display = "block";
+		toggleButThing.style.backgroundColor = "greenyellow";
+		toggleButThing.innerHTML = "hide alart bar";
+	} else {
+		alertaBar.style.display = "none";
+		toggleButThing.style.backgroundColor = "red";
+		toggleButThing.innerHTML = "show alert bar";
+	}
+}
+// runs things when a key on the keyboard is pressed
+window.onload = function(){
+    window.onkeydown= function(pressedkey){
+		// toggles dark theme
+        if(pressedkey.keyCode === 68){
+			toggleDarkMode();
+		};
+	}
+}
 // * Saving and Loading *
 
 // Used to save the game to the browsers cookies
@@ -1101,3 +1115,4 @@ pageFakeLoad();
 loadDarkTheme();
 autoLoadSaveData();
 autoSaveGame();
+updateAlertBar();

@@ -25,7 +25,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <noscript>Sorry, but you cannot play this game because you either have JavaScript disabled or your browser dosen't support JavaScript.</noscript>
 </head>
 <body>
@@ -42,22 +41,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a id="ontopspc" style="float: right; font-size: small; vertical-align: middle; display: none; color: black;">0 bytes per click</a>
 </div>
 <!-- Information displayed at the top of the screen -->
-<p id="score">0 bytes</p>
-<p id="bpscounter">0 bytes per second</p>
-<p id="bpcounter">0 bytes per click</p>
+<div id="scorebox">
+    <p id="bpcounter">0 bytes per click</p>
+    <p id="score">0 bytes</p>
+    <p id="bpscounter">0 bytes per second</p>
+</div>
 <!-- Alert bar (not currently in use) -->
 <div class="alertbar" id="thealertbar">
-    <p id="alertbartext">you probably should not be seeing this message</p>
+    <p id="alertbartext">sub to me im ayden williams gamer spread the word</p>
 </div>
-<!-- type button -->
-<button id="singlebytebutton" onclick="oneByte()">Type</button>
-<!-- navigation menu (desktop) -->
-<div id="desktopnav" style="padding-top: 10px;">
-    <button class="tablink" id="stanav" onclick="openStatsPage()">Statistics</button>
-    <span class="material-icons-two-tone">
-    settings
-    </span>
-    <button class="tablink" id="setnav" onclick="openPage('settings')">Settings</button>
+<div id="topmenu">
+    <!-- navigation menu (desktop) -->
+    <div id="desktopnav" style="padding-top: 10px;">
+        <button class="tablink" id="stanav" onclick="openStatsPage()">Statistics</button>
+        <button class="tablink" id="setnav" onclick="openPage('settings')">Settings</button>
+    </div>
+    <!-- type button -->
+    <button id="singlebytebutton" onclick="oneByte()">Type</button>
 </div>
 <hr>
 
@@ -88,10 +88,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- shop -->
 <div id="upspage" class="tabcontent">
-    <!-- shop header -->
-    <h1 style="margin: 3px;">Shop</h1>
-    <p style="text-align: center; margin: 3px;">Purchase upgrades and other stuff.</p>
-    <hr>
     
     <!-- Automatic Upgrades -->
     <div id="autoupgrades" class="shopcolumn">
@@ -117,10 +113,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="clickupgrades" class="shopcolumn">
         <h2 id="clickuphead" style="margin: 3px;">Clicking Upgrades</h2>
         <p style="text-align: center; margin: 3px;" id="clickuptext">These upgrades increase your file size even more per click</p>
+        <!-- extra finger -->
         <button id="fingerpurchase" class="upgradebutton" onclick="buyFinger()">Extra Finger (250 bytes, +1 byte per click)</button>
+        <button id="lockedfinger" class="lockedup">locked</button>
+        <!-- extra keyboard -->
         <button id="keyboardpurchase" class="upgradebutton" onclick="buyKeyboard()">Extra Keyboard (10 KB, +40 bytes per click)</button>
+        <button id="lockedkeyboard" class="lockedup">locked</button>
+        <!-- macro button -->
         <button id="macrobutpurchase" class="upgradebutton" onclick="buyMacroButton()">Macro Button (150 KB, +500 bytes per click)</button>
+        <button id="lockedmacrobut" class="lockedup">locked</button>
+        <!-- copy paste -->
         <button id="copypastepurchase" class="upgradebutton" onclick="buyCopyPaste()">Copy Paste (10 MB, +30 KB per click)</button>
+        <button id="lockedcopypaste" class="lockedup">locked</button>
     </div>
 
     <!-- More Upgrades -->
@@ -198,9 +202,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="explaintext">Uses a monospaced font to reduce motion.</p>
     <div class="tooltip">
         <button id="showbpcbut" style="background-color: red;" onclick="toggleBytesPerClick()">Enable Bytes Per Click Counter</button>
-        <span class="tooltiptext">Shows bytes per click under bytes per second</span>
+        <span class="tooltiptext">Shows bytes per click under bytes per second. This has no effect on larger screens</span>
     </div>
-    <p class="explaintext">Shows bytes per click under bytes per second</p>
+    <p class="explaintext">Shows bytes per click under bytes per second. This has no effect on larger screens.</p>
+    <div class="tooltip">
+        <button id="togglealbarbut" style="background-color: greenyellow; color: black;" onclick="toggleAlertBar()">hide alert bar</button>
+        <span class="tooltiptext">shows the scrolling alert bar at the top of the screen</span>
+    </div>
+    <p class="explaintext">shows the scrolling alert bar at the top of the screen</p>
     <h3>Other</h3>
     <button id="defaultOpen" onclick="openPage('tutorial')" style="background-color: cyan; color: black;">View tutorial</button>
     <button id="expphase1" onclick="confirmExper()">Enable Experimental Features</button>
