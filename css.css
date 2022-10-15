@@ -177,11 +177,13 @@ button:active {border-radius: 20px;}
     padding: 25px 15px;
     background: grey;
     font-size: 30px;
+    border-radius: 15px 15px 0px 0px;
     color: white;
 }
 .cookiesmessage-container {
     padding: 15px;
     background-color: #ccc;
+    border-radius: 0px 0px 15px 15px;
     color: black;
 }
 .closecookiesmessage {
